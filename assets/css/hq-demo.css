@@ -5,7 +5,3 @@ html,body{height:100%}*{box-sizing:border-box}body{margin:0;background:#07090d;c
 .viewport:before,.viewport:after{display:none!important}
 .demo-panel{background:#111214}
 .viewer-poster{filter:saturate(1.08) contrast(1.03) brightness(.72)}
-
-/* Solid presentation background: no decorative glow behind engineering models. */
-.viewport, .glcanvas { background:#111214 !important; }
-.viewport::before, .viewport::after { background:none !important; box-shadow:none !important; filter:none !important; }
