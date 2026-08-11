@@ -33,3 +33,12 @@ body:before{content:"";position:fixed;inset:-25vh -15vw auto;height:70vh;pointer
 .feature{position:relative}.feature:before{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.08);border-radius:inherit;pointer-events:none;z-index:3}.feature-body>*{transition:transform .55s cubic-bezier(.2,.8,.2,1)}.feature:hover .feature-body h3{transform:translateX(4px)}
 .section-title{position:relative}.section-title:after{content:"";display:block;width:0;height:2px;background:var(--accent);margin-top:14px;transition:width .8s cubic-bezier(.2,.8,.2,1)}.section-head.seen .section-title:after{width:46px}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.motion-reveal{opacity:1;transform:none;filter:none}}
+/* Polished interaction layer */
+.hero-grid>div:first-child{position:relative}
+.hero-grid>div:first-child:before{content:"";position:absolute;left:-18px;top:8px;width:3px;height:0;background:var(--accent);border-radius:3px;animation:heroRule 1.05s .25s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes heroRule{to{height:78px}}
+.nav-links>a{position:relative}.nav-links>a:not(.pill):after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:var(--accent);transition:right .3s ease}.nav-links>a:not(.pill):hover:after{right:0}
+.feature,.card,.wide-image,.gallery img,.portrait{transform-style:preserve-3d;will-change:transform}
+.card-image,.feature-media{isolation:isolate}.card-image:before,.feature-media:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 22%,rgba(255,255,255,.20) 46%,transparent 70%);transform:translateX(-135%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}.card:hover .card-image:before,.feature:hover .feature-media:before{transform:translateX(135%)}
+.pill{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,background .28s ease,border-color .28s ease}.pill:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.hero-grid>div:first-child:before{animation:none;height:78px}.feature,.card,.wide-image,.gallery img,.portrait{will-change:auto}}

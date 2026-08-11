@@ -8,3 +8,7 @@
   const warm=url=>fetch(url,{cache:'force-cache'}).catch(()=>{});const idle=window.requestIdleCallback||((fn)=>setTimeout(fn,1200));idle(async()=>{try{const r=await fetch('demos/robot-arm/model.json',{cache:'force-cache'});if(r.ok){const m=await r.json();warm('demos/robot-arm/'+m.data)}}catch(_){}});
   document.querySelectorAll('a[href*="demos/needle"],a[href*="demos/robot-arm"]').forEach(a=>a.addEventListener('mouseenter',()=>{if(a.href.includes('/needle'))warm('demos/needle/models/full.json');if(a.href.includes('/robot-arm'))warm('demos/robot-arm/model.json')},{once:true}));
 })();
+// Subtle pointer parallax for large visual surfaces; disabled on touch/reduced-motion.
+if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+ document.querySelectorAll('.portrait,.card,.wide-image').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(1100px) rotateX(${(-y*1.8).toFixed(2)}deg) rotateY(${(x*1.8).toFixed(2)}deg) translateY(-2px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
+}
