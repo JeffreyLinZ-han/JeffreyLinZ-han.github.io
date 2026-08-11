@@ -1,0 +1,10 @@
+{
+  "file_count": 443,
+  "bytes": 173629630,
+  "arm_meshes": 11,
+  "harvest_meshes": 405,
+  "step_files": [
+    "full-assembly.step",
+    "actuator.step"
+  ]
+}
