@@ -1,0 +1,2 @@
+Copy the website files/folders from this patch into the root of JeffreyLinZ-han.github.io and replace matching files.
+Commit and push in GitHub Desktop, wait for GitHub Pages deployment, then press Ctrl+F5 once.
