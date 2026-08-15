@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="W-D1, a custom 6-DOF robotic arm designed and built by Jeffrey (Zihan) Lin.">
-  <meta name="theme-color" content="#f8f6f7">
+  <meta name="theme-color" content="#f7f4f6">
   <title>W-D1 Robotic Arm — Jeffrey Lin</title>
   <link rel="stylesheet" href="../assets/css/site.css">
   <link rel="preload" as="image" href="../assets/img/wd1-hero.webp" fetchpriority="high">
 </head>
-<body class="project-page wd1-page">
+<body class="project-page wd1-page wd1-v4">
   <nav class="site-nav dark-over" aria-label="Primary navigation">
     <div class="wrap nav-inner">
       <a class="brand" href="../index.html"><span class="brand-mark">ZL</span><span>Jeffrey (Zihan) Lin</span></a>
@@ -23,187 +23,185 @@
   </nav>
 
   <main>
-    <section class="project-hero-full" id="top">
+    <section class="project-hero-full wd1-v4-hero" id="top">
       <div class="hero-bg"><img src="../assets/img/wd1-hero.webp" alt="W-D1 robotic arm standing in a raised pose"></div>
       <div class="wrap project-hero-content">
-        <div class="eyebrow" data-reveal>Independent build · Summer 2026</div>
-        <h1 data-reveal>W-D1<br>Robotic Arm</h1>
-        <p class="project-lede" data-reveal>I wanted one project where I couldn't hide behind a subsystem. So I designed the arm, built the hardware, wrote the control stack, added sensing, made the digital twin — and kept iterating until the thing actually moved.</p>
-        <div class="project-hero-bottom" data-reveal>
-          <div class="project-meta"><span>6 DOF</span><span>STM32</span><span>MuJoCo</span><span>SolidWorks</span><span>Encoder feedback</span></div>
-          <div class="project-hero-note">Prototype v1<br>Shanghai · 2026</div>
+        <div class="hero-glass" data-reveal>
+          <div class="eyebrow">Independent build · Summer 2026</div>
+          <h1>W-D1<br>Robotic Arm</h1>
+          <p class="project-lede">A six-axis robot I designed from the mechanism outward — structure, transmission, embedded control, sensing, simulation, and the revisions in between.</p>
+          <div class="project-hero-bottom">
+            <div class="project-meta"><span>6 DOF</span><span>STM32</span><span>MuJoCo</span><span>SolidWorks</span><span>Encoder feedback</span></div>
+            <div class="project-hero-note">Prototype v1<br>Shanghai · 2026</div>
+          </div>
         </div>
       </div>
-      <a class="hero-float-link" href="#motion"><span>See it move</span><strong>↓</strong></a>
     </section>
 
-    <div class="project-jump-wrap">
-      <nav class="project-jump" aria-label="W-D1 page sections">
+    <div class="project-jump-wrap wd1-v4-jump-wrap">
+      <nav class="project-jump wd1-v4-jump" aria-label="W-D1 page sections">
         <a href="#system"><span>01</span>System</a>
         <a href="#mechanics"><span>02</span>Mechanics</a>
         <a href="#motion"><span>03</span>Motion</a>
         <a href="#iteration"><span>04</span>Iteration</a>
-        <a href="#assembly"><span>05</span>Build</a>
+        <a href="#build"><span>05</span>Build</a>
         <a href="#integration"><span>06</span>Integration</a>
         <a class="jump-accent" href="../demos/robot-arm/">Digital twin ↗</a>
       </nav>
     </div>
 
-    <section class="project-overview">
-      <div class="wrap project-facts">
-        <a class="project-fact" href="#system"><strong>6 DOF</strong><span>One complete manipulator</span></a>
-        <a class="project-fact" href="#motion"><strong>STM32</strong><span>Low-level motion control</span></a>
-        <a class="project-fact" href="../demos/robot-arm/"><strong>MuJoCo</strong><span>Digital twin + trajectories ↗</span></a>
-        <a class="project-fact" href="#iteration"><strong>From scratch</strong><span>CAD → hardware → software</span></a>
+    <section class="wd1-opening">
+      <div class="wrap wd1-opening-grid">
+        <div data-reveal>
+          <div class="eyebrow">The project</div>
+          <h2>One robot.<br>No handoffs.</h2>
+        </div>
+        <div class="wd1-opening-copy" data-reveal>
+          <p>I wanted a project where every layer had consequences for the next one. A wider bearing changed packaging. Packaging changed wiring. Wiring changed the printed parts. The encoder changed what the firmware had to understand.</p>
+          <p>W-D1 became a full-stack mechatronics exercise: not a finished product, but a machine I could keep asking harder questions.</p>
+        </div>
+      </div>
+      <div class="wrap wd1-stat-row" data-reveal>
+        <a href="#mechanics"><strong>6</strong><span>Actuated axes</span></a>
+        <a href="#motion"><strong>STM32</strong><span>Low-level control</span></a>
+        <a href="../demos/robot-arm/"><strong>MuJoCo</strong><span>Interactive digital twin ↗</span></a>
+        <a href="#iteration"><strong>v1</strong><span>Physical prototype</span></a>
       </div>
     </section>
 
-    <section class="project-section story-section" id="system">
-      <div class="wrap project-split">
-        <aside class="project-aside" data-reveal>
-          <div class="eyebrow">01 / System</div>
-          <h2>Own the<br>whole chain.</h2>
-          <p>W-D1 started as a way to learn what happens between a CAD model and a robot that can repeat a motion without excuses.</p>
-        </aside>
-        <div class="project-copy" data-reveal>
-          <p>The interesting part wasn't any one component. It was getting <strong>mechanics, transmission, power, firmware, sensing, kinematics, and simulation</strong> to stop disagreeing with each other.</p>
-          <p>The shoulder and elbow use stepper-driven belt reductions, the wrist uses servo actuation, and an STM32 handles low-level commands from a Python interface. A MuJoCo twin mirrors the same joint structure for kinematics and trajectory work.</p>
-          <div class="layer-grid">
-            <a class="layer" href="#mechanics"><span>MECHANICS</span><h3>Structure & transmission</h3><p>Belts, bearings, shafts, packaging, stiffness, printability.</p><b>Explore ↘</b></a>
-            <a class="layer" href="#motion"><span>CONTROL</span><h3>Motion electronics</h3><p>STM32, steppers, servos, serial commands, coordinated motion.</p><b>Explore ↘</b></a>
-            <a class="layer" href="#integration"><span>SENSING</span><h3>Joint state</h3><p>Absolute encoders, zero calibration, mapping, wrap-around debugging.</p><b>Explore ↘</b></a>
-            <a class="layer" href="../demos/robot-arm/"><span>SOFTWARE</span><h3>Digital twin</h3><p>MuJoCo, kinematics, joint limits, trajectories, browser control.</p><b>Launch ↗</b></a>
+    <section class="wd1-section" id="system">
+      <div class="wrap">
+        <div class="wd1-section-head" data-reveal>
+          <div><div class="eyebrow">01 / System</div><h2>The whole chain,<br>on one page.</h2></div>
+          <p>Four layers, one machine. Click through each layer or open the CAD view to see how the architecture connects.</p>
+        </div>
+        <div class="wd1-system-grid">
+          <a class="wd1-system-card" href="#mechanics" data-reveal><span>01</span><h3>Mechanism</h3><p>Links, bearings, belt reductions, shafts, housings, stiffness.</p><b>Explore ↘</b></a>
+          <a class="wd1-system-card" href="#motion" data-reveal><span>02</span><h3>Control</h3><p>Stepper and servo actuation, STM32 commands, coordinated motion.</p><b>Explore ↘</b></a>
+          <a class="wd1-system-card" href="#integration" data-reveal><span>03</span><h3>Sensing</h3><p>Absolute joint feedback, zeroing, angle mapping, wrap-around.</p><b>Explore ↘</b></a>
+          <a class="wd1-system-card sunset-card" href="../demos/robot-arm/" data-reveal><span>04</span><h3>Digital twin</h3><p>Same joint structure in MuJoCo for kinematics and trajectory work.</p><b>Launch ↗</b></a>
+        </div>
+        <a class="wd1-cad-stage clickable-media" href="../assets/img/arm-cad-lineart.png" data-lightbox data-caption="W-D1 CAD linework — joint architecture before fabrication." data-reveal>
+          <img src="../assets/img/arm-cad-lineart.png" alt="Line-art CAD view of the W-D1 robotic arm">
+          <div class="stage-caption"><span>CAD / architecture</span><strong>Open full view ＋</strong></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="wd1-section wd1-soft" id="mechanics">
+      <div class="wrap">
+        <div class="wd1-section-head" data-reveal>
+          <div><div class="eyebrow">02 / Mechanics</div><h2>Designed for the table,<br>not the render.</h2></div>
+          <p>The exposed transmission is the point. You can see where torque travels, where the structure is supported, and where later revisions had to make room for real hardware.</p>
+        </div>
+        <a class="wd1-hero-media clickable-media" href="../assets/img/wd1-profile-clean.webp" data-lightbox data-caption="Clean W-D1 side profile — full extension and shoulder belt drive." data-reveal data-spotlight>
+          <img src="../assets/img/wd1-profile-clean.webp" alt="Clean side profile of the W-D1 robotic arm">
+          <div class="stage-caption light"><span>Full extension / clean profile</span><strong>Open ＋</strong></div>
+        </a>
+        <div class="wd1-detail-grid">
+          <a class="wd1-detail-card clickable-media" href="../assets/img/wd1-mechanical.webp" data-lightbox data-caption="Mechanical architecture — timing-belt reduction, joint housings, shafts, and exposed prototype." data-reveal>
+            <img src="../assets/img/wd1-mechanical.webp" alt="W-D1 robotic arm showing belt transmission and mechanical architecture">
+            <div><span>Transmission</span><h3>Belt reduction, bearings, custom housings.</h3></div>
+          </a>
+          <a class="wd1-detail-card clickable-media" href="../assets/img/arm3.webp" data-lightbox data-caption="Earlier W-D1 build before the final routing and sensor revisions." data-reveal>
+            <img src="../assets/img/arm3.webp" alt="Earlier W-D1 robotic arm build on a workbench">
+            <div><span>Earlier frame</span><h3>The architecture before the routing got cleaner.</h3></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wd1-section wd1-motion-v4" id="motion">
+      <div class="wrap">
+        <div class="wd1-motion-card" data-reveal>
+          <div class="wd1-motion-copy">
+            <div class="eyebrow">03 / Motion</div>
+            <h2>The first sweep<br>changed the project.</h2>
+            <p>Once multiple joints could move through a real workspace, the questions became less theoretical: balance, repeatability, cable routing, joint limits, encoder behavior, and what the simulation was missing.</p>
+            <div class="wd1-inline-actions"><a class="button sunset" href="../demos/robot-arm/">Drive the twin <span class="arrow">↗</span></a><a class="button light" href="#integration">What broke next ↓</a></div>
+          </div>
+          <div class="wd1-motion-video"><video src="../assets/img/wd1-demo.mp4" poster="../assets/img/wd1-profile-clean.webp" controls muted playsinline preload="metadata" aria-label="W-D1 robotic arm motion demo"></video></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wd1-section" id="iteration">
+      <div class="wrap">
+        <div class="wd1-section-head" data-reveal>
+          <div><div class="eyebrow">04 / Iteration</div><h2>Version history<br>you can hold.</h2></div>
+          <p>The final assembly hides most of the project. The rejected parts show the decisions: clearances that were wrong, geometry that flexed, joints that needed support, and packaging that looked easier in CAD.</p>
+        </div>
+        <div class="wd1-iteration-grid">
+          <a class="wd1-iterations-main clickable-media" href="../assets/img/wd1-iterations.webp" data-lightbox data-caption="Physical W-D1 iterations — links, housings, base parts, gripper components, and revisions." data-reveal>
+            <img src="../assets/img/wd1-iterations.webp" alt="Multiple generations of W-D1 3D-printed robot arm parts laid out on a table">
+            <div class="stage-caption"><span>Print → fit → load → revise</span><strong>Open ＋</strong></div>
+          </a>
+          <div class="wd1-iteration-side" data-reveal>
+            <div class="wd1-quote">“The final robot is only the winning geometry.”</div>
+            <a class="wd1-small-media clickable-media" href="../assets/img/arm1.webp" data-lightbox data-caption="One of the first powered W-D1 poses — early structure and rough wiring.">
+              <img src="../assets/img/arm1.webp" alt="Early powered W-D1 prototype on a workbench">
+              <span>First powered pose ＋</span>
+            </a>
           </div>
         </div>
       </div>
-
-      <a class="media-fragment fragment-cad" href="../assets/img/arm-cad-lineart.png" data-lightbox data-caption="W-D1 CAD linework — the geometry before the hardware started fighting back." data-reveal>
-        <img src="../assets/img/arm-cad-lineart.png" alt="Line-art CAD view of the W-D1 robotic arm">
-        <span class="media-open">＋</span><small>CAD / early architecture</small>
-      </a>
     </section>
 
-    <section class="project-section" id="mechanics">
-      <div class="wrap">
-        <div class="section-intro compact" data-reveal>
-          <div><div class="eyebrow">02 / Mechanics</div><h2 class="section-title">The body came<br>before the polish.</h2></div>
-          <p>The belt drive, bearing support, joint housings, and actuator packaging are all exposed here. That makes the prototype imperfect as a product — and useful as an engineering object.</p>
-        </div>
-        <a class="media-full clickable-media" href="../assets/img/wd1-mechanical.webp" data-lightbox data-caption="Mechanical architecture — timing-belt reduction, joint housings, shafts, and the exposed prototype." data-reveal data-spotlight>
-          <img src="../assets/img/wd1-mechanical.webp" alt="W-D1 robotic arm showing belt transmission and mechanical architecture">
-          <span class="media-open">＋</span>
-        </a>
-        <div class="media-caption"><span>Mechanical architecture / exposed prototype</span><span>Timing-belt reduction · custom joint housings</span></div>
-      </div>
-
-      <a class="media-fragment fragment-right" href="../assets/img/arm3.webp" data-lightbox data-caption="An earlier W-D1 build — before the final routing and sensor revisions." data-reveal>
-        <img src="../assets/img/arm3.webp" alt="Earlier W-D1 robotic arm build on a workbench">
-        <span class="media-open">＋</span><small>Earlier build / v0.x</small>
-      </a>
-    </section>
-
-    <section class="project-section motion-section" id="motion">
-      <div class="wrap">
-        <div class="demo-block" data-reveal>
-          <div class="demo-video"><video src="../assets/img/wd1-demo.mp4" poster="../assets/img/wd1-profile-clean.webp" controls muted playsinline preload="metadata" aria-label="W-D1 robotic arm motion demo"></video></div>
-          <div class="demo-copy">
-            <div><div class="eyebrow">03 / Motion</div><h2>Then it<br>moved.</h2><p>The first full sweep mattered more than any clean render. This is the physical prototype coordinating multiple joints across a large workspace — still wired like a lab bench, but no longer just a model.</p></div>
-            <div class="demo-actions"><a class="button light" href="../demos/robot-arm/">Drive the digital twin <span class="arrow">↗</span></a><a class="mini-text-link" href="#integration">See what broke first →</a></div>
-          </div>
-        </div>
-      </div>
-
-      <a class="media-fragment fragment-left-wide" href="../assets/img/wd1-profile-clean.webp" data-lightbox data-caption="Clean side profile — same W-D1 prototype, with the background cleared so the silhouette and belt drive read clearly." data-reveal>
-        <img src="../assets/img/wd1-profile-clean.webp" alt="Clean side profile of the W-D1 robotic arm">
-        <span class="media-open">＋</span><small>Full extension / clean profile</small>
-      </a>
-    </section>
-
-    <section class="project-section iteration-section" id="iteration">
-      <div class="wrap project-split">
-        <aside class="project-aside" data-reveal>
-          <div class="eyebrow">04 / Iteration</div>
-          <h2>Most of the<br>project is the<br>parts that lost.</h2>
-          <p>The final robot only shows the winning geometry. The table shows the real design process.</p>
-        </aside>
-        <div class="project-copy" data-reveal>
-          <p>Joint housings changed. Link geometry changed. Base geometry changed. Parts were reprinted because clearances were wrong, loads were higher than expected, or a wire simply needed somewhere better to go.</p>
-          <p>I kept the failed and replaced parts because they are a better record of the engineering than a perfectly clean final render.</p>
-        </div>
-      </div>
-
-      <div class="wrap">
-        <a class="iteration-image clickable-media" href="../assets/img/wd1-iterations.webp" data-lightbox data-caption="Physical W-D1 iterations — links, housings, base parts, gripper components, and revisions that never made the final assembly." data-reveal>
-          <img src="../assets/img/wd1-iterations.webp" alt="Multiple generations of W-D1 3D-printed robot arm parts laid out on a table">
-          <span class="media-open">＋</span>
-        </a>
-        <div class="media-caption"><span>Design history, laid out physically</span><span>Print → fit → load → revise</span></div>
-      </div>
-
-      <a class="media-fragment fragment-small-left" href="../assets/img/arm1.webp" data-lightbox data-caption="One of the first powered poses — rough wiring, early structure, and a robot that was only beginning to hold itself together." data-reveal>
-        <img src="../assets/img/arm1.webp" alt="Early powered W-D1 prototype on a workbench">
-        <span class="media-open">＋</span><small>First powered poses</small>
-      </a>
-    </section>
-
-    <section class="project-section assembly-section" id="assembly">
-      <div class="wrap assembly-layout">
-        <div class="assembly-copy" data-reveal>
+    <section class="wd1-section wd1-soft" id="build">
+      <div class="wrap wd1-build-layout">
+        <div class="wd1-build-copy" data-reveal>
           <div class="eyebrow">05 / Build</div>
-          <h2>Thirty seconds<br>from the messy middle.</h2>
-          <p>Fitting printed parts, checking alignment, and watching a table full of components become one machine. I kept the shorter assembly clip because it says enough without turning the page into a build vlog.</p>
+          <h2>Thirty seconds<br>from the middle.</h2>
+          <p>Fitting printed parts, checking alignment, and turning a table of components into one mechanism. Short enough to stay useful; long enough to show that the robot did not arrive assembled.</p>
           <a class="text-link" href="#integration">Continue to integration <span class="arrow">→</span></a>
         </div>
-        <figure class="single-video-card" data-reveal>
+        <figure class="wd1-build-video" data-reveal>
           <video src="../assets/img/wd1-assembly-2.mp4" poster="../assets/img/wd1-profile-clean.webp" controls muted playsinline preload="metadata" aria-label="W-D1 assembly process video"></video>
-          <figcaption><strong>Assembly / 00:30</strong><span>Structure, alignment, and final fit-up</span></figcaption>
+          <figcaption><strong>Assembly / 00:30</strong><span>Structure · alignment · fit-up</span></figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="project-section integration-section" id="integration">
-      <div class="wrap project-split">
-        <aside class="project-aside" data-reveal>
-          <div class="eyebrow">06 / Integration</div>
-          <h2>This is where<br>CAD became<br>robotics.</h2>
-          <p>Once the electronics arrived, every tidy assumption became a real connector, a noisy signal, a missed step, a calibration problem, or a line of code.</p>
-        </aside>
-        <div class="project-copy" data-reveal>
-          <div class="challenge-list">
-            <a class="challenge" href="#motion"><span>01</span><div><h3>Make everything talk</h3><p>Stepper control, servo actuation, encoder communication, serial parsing, and host-side commands all had to coexist.</p></div><b>↗</b></a>
-            <div class="challenge"><span>02</span><div><h3>Chase the encoder</h3><p>Raw-angle behavior, zero references, packet interpretation, mapping, and wrap-around all had to be understood instead of hidden behind a library.</p></div></div>
-            <div class="challenge"><span>03</span><div><h3>Accept mechanical reality</h3><p>Belt tension, backlash, shaft support, stiffness, actuator packaging, and real loads kept rewriting the design brief.</p></div></div>
-            <a class="challenge" href="../demos/robot-arm/"><span>04</span><div><h3>Keep model and hardware talking</h3><p>The digital twin follows the same joint structure so simulation, trajectories, and the physical arm can converge on one model.</p></div><b>↗</b></a>
+    <section class="wd1-section" id="integration">
+      <div class="wrap">
+        <div class="wd1-section-head" data-reveal>
+          <div><div class="eyebrow">06 / Integration</div><h2>Every assumption<br>became a wire.</h2></div>
+          <p>This is where CAD became robotics: packet formats, encoder zeros, belt tension, missed steps, servo power, cable paths, and host-side commands all sharing one physical system.</p>
+        </div>
+        <a class="wd1-bench-main clickable-media" href="../assets/img/wd1-bench.webp" data-lightbox data-caption="Integration bench — controller, drivers, wiring, and W-D1 sharing one workspace." data-reveal>
+          <img src="../assets/img/wd1-bench.webp" alt="W-D1 on a workbench with control electronics">
+          <div class="stage-caption light"><span>Bench integration / real wiring</span><strong>Open ＋</strong></div>
+        </a>
+        <div class="wd1-integration-grid">
+          <div class="wd1-challenges" data-reveal>
+            <a href="#motion"><span>01</span><div><h3>Make everything talk</h3><p>Stepper control, servos, encoder packets, serial parsing, and host commands.</p></div><b>↗</b></a>
+            <div><span>02</span><div><h3>Understand the encoder</h3><p>Raw angle, zero references, mapping, wrap-around, and behavior near the boundary.</p></div></div>
+            <div><span>03</span><div><h3>Accept mechanical reality</h3><p>Belt tension, shaft support, stiffness, packaging, and loads rewrote the brief.</p></div></div>
+            <a href="../demos/robot-arm/"><span>04</span><div><h3>Keep model and hardware aligned</h3><p>One joint structure across the physical arm and MuJoCo twin.</p></div><b>↗</b></a>
           </div>
+          <a class="wd1-upright clickable-media" href="../assets/img/arm2.webp" data-lightbox data-caption="Upright W-D1 prototype pose used for range and balance checks." data-reveal>
+            <img src="../assets/img/arm2.webp" alt="Upright earlier W-D1 prototype">
+            <div><span>Range check</span><h3>Upright pose / earlier revision</h3></div>
+          </a>
         </div>
       </div>
+    </section>
 
-      <div class="wrap">
-        <a class="media-fragment-inline fragment-bench" href="../assets/img/wd1-bench.webp" data-lightbox data-caption="Integration on the bench — controller, drivers, wiring, and the arm sharing one very real workspace." data-reveal>
-          <img src="../assets/img/wd1-bench.webp" alt="W-D1 on a workbench with control electronics">
-          <span class="media-open">＋</span><small>Bench integration / the real wiring</small>
+    <section class="wd1-twin-v4">
+      <div class="wrap wd1-twin-card" data-reveal>
+        <div class="wd1-twin-copy">
+          <div class="eyebrow">Digital twin</div>
+          <h2>Same joints.<br>Less gravity.</h2>
+          <p>Open the browser model, move the joints, run showcase motions, and inspect the same structure without the bench wiring in the way.</p>
+          <div class="wd1-inline-actions"><a class="button sunset" href="../demos/robot-arm/">Launch W-D1 twin <span class="arrow">↗</span></a><a class="button" href="#top">Back to top ↑</a></div>
+        </div>
+        <a class="wd1-twin-visual clickable-media" href="../assets/img/arm-cad-lineart.png" data-lightbox data-caption="W-D1 CAD linework">
+          <img src="../assets/img/arm-cad-lineart.png" alt="W-D1 CAD line-art"><span>Open CAD ＋</span>
         </a>
       </div>
-
-      <a class="media-fragment fragment-small-right" href="../assets/img/arm2.webp" data-lightbox data-caption="A later upright prototype pose — useful for checking balance, joint range, and how the silhouette changed with each revision." data-reveal>
-        <img src="../assets/img/arm2.webp" alt="Upright earlier W-D1 prototype">
-        <span class="media-open">＋</span><small>Range check / upright pose</small>
-      </a>
     </section>
 
-    <section class="twin-section">
-      <div class="wrap twin-card" data-reveal>
-        <div>
-          <div class="eyebrow">Digital twin</div>
-          <h2>Same joints.<br>Different world.</h2>
-          <p>Open the browser model, move the joints, run showcase motions, and inspect the same structure without the wires getting in the way.</p>
-          <div class="twin-actions"><a class="button sunset" href="../demos/robot-arm/">Launch W-D1 twin <span class="arrow">↗</span></a><a class="button" href="#top">Back to top ↑</a></div>
-        </div>
-        <a class="twin-visual" href="../assets/img/arm-cad-lineart.png" data-lightbox data-caption="W-D1 CAD linework"><img src="../assets/img/arm-cad-lineart.png" alt="W-D1 CAD line-art"><span class="media-open">＋</span></a>
-      </div>
-    </section>
-
-    <a class="project-next" href="harvesting.html" aria-label="Next project: Berry Harvesting Robotics">
+    <a class="project-next wd1-next-v4" href="harvesting.html" aria-label="Next project: Berry Harvesting Robotics">
       <div class="project-next-copy"><div><div class="eyebrow">Next project / 02</div><h2>Berry Harvesting Robotics</h2></div><span class="text-link">Continue <span class="arrow">→</span></span></div>
       <div class="project-next-visual"><img src="../assets/img/harvest1.webp" alt="Berry harvesting robot simulation"></div>
     </a>
