@@ -85,3 +85,35 @@
     if (path.endsWith('/') || path.endsWith('/index.html') || path.endsWith('robot-arm.html')) warm((path.includes('/projects/') ? '../' : '') + 'demos/robot-arm/model.json');
   });
 })();
+
+// V2 micro-interactions: restrained tilt on build/archive cards + magnetic buttons.
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !matchMedia('(pointer:fine)').matches) return;
+
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5;
+      const py = (e.clientY - r.top) / r.height - .5;
+      card.style.setProperty('--ry', `${px * 2.4}deg`);
+      card.style.setProperty('--rx', `${py * -2.0}deg`);
+      card.style.setProperty('--tz', '2px');
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--ry', '0deg');
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--tz', '0px');
+    });
+  });
+
+  document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('pointermove', e => {
+      const r = button.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - .5) * 5;
+      const y = ((e.clientY - r.top) / r.height - .5) * 4;
+      button.style.translate = `${x}px ${y}px`;
+    });
+    button.addEventListener('pointerleave', () => { button.style.translate = '0 0'; });
+  });
+})();

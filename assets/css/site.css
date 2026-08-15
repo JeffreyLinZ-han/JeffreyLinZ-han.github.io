@@ -278,3 +278,199 @@ button{font:inherit;color:inherit}
   .project-hero-full{min-height:92svh}.project-hero-content{padding-bottom:36px}.project-hero-content h1{font-size:68px}.project-hero-bottom{align-items:flex-start;flex-direction:column}.project-hero-note{text-align:left}.project-facts{grid-template-columns:1fr 1fr}.project-split,.project-body-layout{grid-template-columns:1fr;gap:44px}.project-aside,.project-body aside{position:static}.layer-grid{grid-template-columns:1fr}.demo-block{grid-template-columns:1fr;min-height:0}.demo-video{padding:24px 0}.demo-video video{height:min(70vh,620px)}.demo-copy{padding:34px 26px;border-left:0;border-top:1px solid var(--line-dark)}.photo-pair{grid-template-columns:1fr}.photo-pair img{min-height:0}.project-next{grid-template-columns:1fr}.project-next-visual{min-height:380px;order:-1}.project-simple-hero{padding:120px 0 50px}.project-simple-hero h1{font-size:62px}.wide-image{margin-top:38px}.wide-image img{height:55vh}.project-body{padding:74px 0 90px}.demo-cta{grid-template-columns:1fr;padding:30px 26px}.gallery{grid-template-columns:1fr}.gallery img{height:auto;min-height:300px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none;filter:none}.hero-visual img{transform:none}}
+
+/* =========================================================
+   2026.08 refinement — softer geometry, richer color, more life
+   ========================================================= */
+:root{
+  --paper:#f7f7f4;
+  --paper-2:#eff0f5;
+  --ink:#0a0b0e;
+  --muted:#626874;
+  --line:rgba(10,11,14,.11);
+  --red:#ff2447;
+  --red-deep:#d90e34;
+  --blue:#3366ff;
+  --cyan:#18a9ff;
+  --violet:#7557ff;
+  --dark:#0b0c10;
+  --dark-2:#141722;
+  --radius-xl:30px;
+  --radius-lg:24px;
+  --radius-md:18px;
+}
+
+/* Brighter, flatter base without becoming glossy. */
+body{background:var(--paper)}
+::selection{background:var(--blue);color:white}
+
+/* Navigation becomes a small floating piece of UI after scroll. */
+.site-nav:not(.dark-over),.site-nav.scrolled{background:transparent;border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.site-nav.scrolled .nav-inner{
+  height:50px;margin-top:6px;padding:0 10px 0 12px;
+  background:rgba(250,250,248,.86);border:1px solid rgba(10,11,14,.09);
+  border-radius:18px;box-shadow:0 12px 42px rgba(20,24,34,.08);
+  backdrop-filter:blur(22px) saturate(155%);-webkit-backdrop-filter:blur(22px) saturate(155%);
+}
+.site-nav.dark-over.scrolled .nav-inner{color:var(--ink)}
+.brand-mark{border-radius:8px;border-color:rgba(10,11,14,.18);background:rgba(255,255,255,.2)}
+.site-nav.dark-over:not(.scrolled) .brand-mark{border-color:rgba(255,255,255,.45)}
+.nav-progress{height:2px;background:linear-gradient(90deg,var(--red),var(--violet),var(--cyan));border-radius:999px}
+
+/* Home hero — retain the split composition, soften the physical edge. */
+.home-hero{background:linear-gradient(135deg,#fbfbf8 0%,#f5f6fb 58%,#eef2ff 100%)}
+.hero-copy{padding-right:clamp(28px,4vw,64px)}
+.hero-title .accent{color:var(--red);text-shadow:0 10px 38px rgba(255,36,71,.12)}
+.hero-kicker:before{content:"";display:inline-block;width:8px;height:8px;border-radius:3px;background:var(--blue);margin-right:9px;box-shadow:15px 0 0 var(--red)}
+.hero-visual{
+  min-height:calc(100svh - 30px);margin:15px 15px 15px 0;
+  border-radius:var(--radius-xl);box-shadow:0 24px 70px rgba(20,25,38,.15);
+}
+.hero-visual img{filter:saturate(1.17) contrast(1.035)}
+.hero-visual:after{background:linear-gradient(180deg,rgba(8,10,18,.01) 0%,rgba(8,10,18,.02) 45%,rgba(8,10,18,.60) 100%),linear-gradient(90deg,rgba(35,42,75,.10),transparent 36%)}
+.hero-visual-meta{left:26px;right:26px;bottom:24px}
+.hero-crosshair{border-radius:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.scroll-cue i{border-radius:12px;background:white;box-shadow:0 10px 24px rgba(20,25,38,.08)}
+
+.signal-strip{background:#f1f2f7;border-color:rgba(10,11,14,.08)}
+.signal-inner{gap:8px;padding:8px 0;height:66px}
+.signal-item{border:0;border-radius:13px;padding:0 16px;background:rgba(255,255,255,.55)}
+.signal-item:first-child{padding-left:16px}
+.signal-item:nth-child(2):before{border-color:var(--blue)}
+.signal-item:nth-child(3):before{border-color:var(--violet)}
+.signal-item:nth-child(4):before{border-color:var(--cyan)}
+.signal-item:hover{background:white;box-shadow:0 8px 20px rgba(20,25,38,.06)}
+.signal-item:hover:before{background:currentColor}
+
+/* Cards: a little radius, not a bubble UI. */
+.flagship{border-radius:var(--radius-xl);background:linear-gradient(145deg,#0a0b0f 0%,#16101a 100%);box-shadow:0 24px 70px rgba(19,19,27,.12)}
+.flagship-media img,.project-tile-media img,.project-next-visual img{filter:saturate(1.13) contrast(1.025)}
+.flagship-copy{border-left-color:rgba(255,255,255,.10)}
+.flagship-meta span{border-radius:10px}
+.project-grid{border:0;gap:18px}
+.project-tile{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:#fff;box-shadow:0 12px 35px rgba(20,25,38,.045);transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out),border-color .3s,background .3s}
+.project-tile:hover{background:#fff;transform:translateY(-7px);box-shadow:0 24px 60px rgba(20,25,38,.09);border-color:rgba(51,102,255,.22)}
+.project-tile-media{border-bottom:1px solid rgba(10,11,14,.07)}
+
+/* Dark system area gets a subtle high-saturation ambient edge. */
+.system-section{margin:0 15px;border-radius:var(--radius-xl);background:radial-gradient(900px 450px at 87% -10%,rgba(51,102,255,.22),transparent 62%),radial-gradient(700px 380px at 10% 110%,rgba(255,36,71,.16),transparent 62%),var(--dark);overflow:hidden}
+.system-grid{border:1px solid var(--line-dark);border-radius:var(--radius-lg);overflow:hidden}
+.system-cell{background:rgba(255,255,255,.015)}
+.system-cell:hover{background:rgba(255,255,255,.07)}
+.system-cell:nth-child(2):after{color:var(--blue)}
+.system-cell:nth-child(3):after{color:var(--violet)}
+.system-cell:nth-child(4):after{color:var(--cyan)}
+
+.profile-sticky img{border-radius:var(--radius-lg);box-shadow:0 18px 50px rgba(20,25,38,.10)}
+.timeline-row{border-radius:16px;padding-left:16px;padding-right:16px;margin:0 -16px;transition:background .25s,transform .3s var(--ease-out)}
+.timeline-row:hover{background:white;transform:translateX(4px)}
+.toolbox{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:white}
+.toolbox-cell{border-top:0}
+
+.contact-section{margin:15px;border-radius:var(--radius-xl);min-height:500px;background:radial-gradient(600px 420px at 92% 10%,rgba(92,92,255,.38),transparent 58%),linear-gradient(120deg,#ff2148 0%,#ff365c 55%,#ff5141 100%)}
+.contact-section:before,.contact-section:after{border-color:rgba(255,255,255,.22)}
+
+/* W-D1 — floating cinematic hero rather than hard full-bleed edges. */
+.project-page{background:linear-gradient(180deg,#f6f7fb 0%,var(--paper) 28%)}
+.project-hero-full{
+  min-height:calc(100svh - 24px);margin:12px;border-radius:32px;
+  box-shadow:0 26px 80px rgba(15,19,29,.17);
+}
+.project-hero-full .hero-bg img{filter:saturate(1.19) contrast(1.045)}
+.project-hero-full .hero-bg:after{background:linear-gradient(180deg,rgba(0,0,0,.02) 0%,rgba(0,0,0,.07) 37%,rgba(5,7,14,.78) 100%),linear-gradient(90deg,rgba(12,15,30,.36),transparent 58%)}
+.project-hero-content .project-lede{color:rgba(255,255,255,.84)}
+.project-meta span{border-radius:10px;background:rgba(255,255,255,.07);backdrop-filter:blur(8px)}
+
+.project-overview{border:0;padding:18px 0 0}
+.project-facts{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:white;box-shadow:0 12px 32px rgba(20,25,38,.045)}
+.project-fact strong{color:var(--ink)}
+.project-fact:nth-child(1) strong{color:var(--red)}
+.project-fact:nth-child(2) strong{color:var(--blue)}
+.project-fact:nth-child(3) strong{color:var(--violet)}
+.project-fact:nth-child(4) strong{color:#ff6a20}
+
+.layer-grid{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:white}
+.layer{background:white}
+.layer:hover{background:#f7f8ff}
+.layer:nth-child(1) span{color:var(--red)}
+.layer:nth-child(2) span{color:var(--blue)}
+.layer:nth-child(3) span{color:var(--violet)}
+.layer:nth-child(4) span{color:var(--cyan)}
+
+.media-full,.iteration-image,.demo-block,.wide-image,.demo-cta{border-radius:var(--radius-xl);overflow:hidden}
+.media-full{box-shadow:0 18px 52px rgba(20,25,38,.09)}
+.media-full img,.iteration-image img,.photo-pair img,.demo-video video,.wide-image img,.gallery img{filter:saturate(1.13) contrast(1.025)}
+.demo-block{background:radial-gradient(600px 400px at 95% 5%,rgba(51,102,255,.16),transparent 60%),var(--dark);box-shadow:0 22px 65px rgba(20,25,38,.13)}
+.demo-video video{border-radius:18px}
+.photo-pair{gap:16px}
+.photo-pair img{border-radius:var(--radius-lg);box-shadow:0 14px 40px rgba(20,25,38,.08)}
+.iteration-image{background:linear-gradient(145deg,#f4e8d4,#e9eefc);box-shadow:0 18px 48px rgba(20,25,38,.07)}
+.challenge{border:1px solid transparent;border-bottom-color:var(--line);border-radius:16px;padding-left:14px;padding-right:14px;margin:0 -14px;transition:background .25s,border-color .25s,transform .3s var(--ease-out)}
+.challenge:hover{background:white;border-color:rgba(51,102,255,.12);transform:translateX(5px)}
+
+/* New assembly logs */
+.build-log-section{background:linear-gradient(180deg,transparent 0%,#f0f3ff 100%)}
+.build-log-head,.archive-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,430px);gap:50px;align-items:end;margin-bottom:42px}
+.build-log-head h2,.archive-head h2{font-size:clamp(42px,6vw,82px);line-height:.95;letter-spacing:-.06em;font-weight:620;margin:13px 0 0}
+.build-log-head>p,.archive-head>p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+.build-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.build-card{background:white;border:1px solid rgba(10,11,14,.08);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 14px 44px rgba(20,25,38,.06);transform-style:preserve-3d;transition:box-shadow .35s var(--ease-out),border-color .35s}
+.build-card:hover{box-shadow:0 26px 65px rgba(20,25,38,.12);border-color:rgba(51,102,255,.20)}
+.build-video-wrap{position:relative;background:#090a0d;aspect-ratio:16/9;overflow:hidden}
+.build-video-wrap video{width:100%;height:100%;object-fit:cover;filter:saturate(1.12) contrast(1.04)}
+.video-badge{position:absolute;left:14px;top:14px;padding:7px 10px;border-radius:10px;background:rgba(10,11,14,.70);color:white;backdrop-filter:blur(12px);font-family:"SFMono-Regular",Consolas,monospace;font-size:9px;letter-spacing:.08em}
+.build-card:nth-child(2) .video-badge{background:rgba(51,102,255,.82)}
+.build-card-copy{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 20px 20px}
+.build-card-copy strong{font-size:15px;letter-spacing:-.025em}
+.build-card-copy span{font-family:"SFMono-Regular",Consolas,monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.065em;text-align:right}
+
+/* Restore the older W-D1 images as an intentional archive, not leftovers. */
+.archive-section{background:#f1f2f7}
+.legacy-gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.legacy-shot{margin:0;background:white;border:1px solid rgba(10,11,14,.08);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 12px 38px rgba(20,25,38,.055);transform-style:preserve-3d}
+.legacy-shot.tall{grid-column:span 6}
+.legacy-shot.wide{grid-column:span 7}
+.legacy-shot.cad{grid-column:span 5}
+.legacy-shot img{width:100%;height:520px;object-fit:cover;filter:saturate(1.14) contrast(1.025);transition:transform .8s var(--ease-out)}
+.legacy-shot.wide img,.legacy-shot.cad img{height:410px}
+.legacy-shot.cad img{object-fit:contain;background:#fbfbfb;padding:28px;filter:none}
+.legacy-shot:hover img{transform:scale(1.018)}
+.legacy-shot figcaption{display:flex;justify-content:space-between;gap:20px;padding:14px 16px 16px;border-top:1px solid rgba(10,11,14,.07);font-family:"SFMono-Regular",Consolas,monospace;font-size:9px;text-transform:uppercase;letter-spacing:.065em;color:var(--muted)}
+.legacy-shot figcaption span:first-child{color:var(--ink)}
+
+.project-next{margin:15px;border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 18px 55px rgba(20,25,38,.08)}
+.project-next-copy{background:linear-gradient(145deg,#f4f5fb,#eceeff)}
+
+/* Secondary project pages inherit the softer visual system too. */
+.project-simple-hero .wide-image{box-shadow:0 18px 55px rgba(20,25,38,.08)}
+.demo-cta{background:linear-gradient(140deg,#0b0c10,#171424)}
+.gallery{gap:16px}
+.gallery img{border-radius:var(--radius-lg);box-shadow:0 10px 30px rgba(20,25,38,.06)}
+
+/* Tiny detail: animated accent line on section eyebrows. */
+.eyebrow:before{height:2px;border-radius:999px;background:linear-gradient(90deg,var(--red),var(--blue));opacity:1;transform-origin:left center;transition:width .35s var(--ease-out)}
+[data-reveal]:hover>.eyebrow:before,.project-aside:hover .eyebrow:before{width:34px}
+
+/* Fine pointer motion hooks. JS writes rotate variables. */
+[data-tilt]{--rx:0deg;--ry:0deg;--tz:0px;transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz));transition:transform .28s var(--ease-out),box-shadow .35s var(--ease-out)}
+.reveal[data-tilt]{transform:translateY(34px) perspective(1100px) rotateX(0) rotateY(0)}
+.reveal.is-visible[data-tilt]{transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz))}
+
+@media(max-width:1000px){
+  .hero-visual{margin-right:10px}
+  .build-card-copy{align-items:flex-start;flex-direction:column;gap:7px}.build-card-copy span{text-align:left}
+}
+@media(max-width:760px){
+  .site-nav.scrolled .nav-inner{width:calc(100% - 20px);height:48px;margin-top:6px;padding-inline:12px}.site-nav.menu-open .nav-inner{border-radius:18px 18px 0 0}
+  .nav-links{inset:60px 10px auto;border:1px solid var(--line);border-radius:0 0 18px 18px;overflow:hidden;padding:10px 12px 16px}.nav-links>a{border-radius:10px;border-bottom:0}
+  .home-hero{padding-bottom:10px}.hero-visual{margin:0 10px 10px;border-radius:24px;min-height:72svh}.hero-copy{padding-right:20px}.signal-inner{gap:6px;padding:6px 0}.signal-item:first-child{padding-left:12px}.signal-item{padding-inline:12px;border-radius:11px}
+  .flagship,.system-section,.contact-section{border-radius:24px}.system-section,.contact-section{margin:10px}
+  .project-grid{gap:12px}.project-tile{border-radius:20px}
+  .project-hero-full{margin:8px;border-radius:24px;min-height:calc(92svh - 16px)}
+  .project-facts{border-radius:20px}.project-fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .media-full,.iteration-image,.demo-block,.wide-image,.demo-cta{border-radius:22px}.photo-pair img{border-radius:20px}
+  .build-log-head,.archive-head{grid-template-columns:1fr;gap:22px}.build-grid{grid-template-columns:1fr}.build-card{border-radius:20px}
+  .legacy-gallery{grid-template-columns:1fr}.legacy-shot.tall,.legacy-shot.wide,.legacy-shot.cad{grid-column:auto}.legacy-shot img,.legacy-shot.wide img,.legacy-shot.cad img{height:auto;max-height:620px}.legacy-shot{border-radius:20px}
+  .project-next{margin:10px;border-radius:24px}
+}
+@media(prefers-reduced-motion:reduce){[data-tilt]{transform:none!important}.timeline-row:hover,.challenge:hover,.project-tile:hover{transform:none}}
