@@ -1,2 +1,113 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Jeffrey (Zihan) Lin — robotics, mechatronics, embedded systems, and simulation." name="description"/><title>Custom 6-DOF Robot Arm — Jeffrey Lin</title><link href="../assets/css/site.css" rel="stylesheet"/></head><body><nav class="nav"><div class="wrap nav-in"><a class="brand" href="../index.html">Jeffrey (Zihan) Lin</a><div class="nav-links"><a href="../index.html#work">Work</a><a href="../index.html#experience">Experience</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" rel="noreferrer" target="_blank">Resume ↗</a><a href="https://www.linkedin.com/in/zzzzzihan-lin/en" rel="noreferrer" target="_blank">LinkedIn ↗</a><a class="pill" href="https://github.com/JeffreyLinZ-han" rel="noreferrer" target="_blank">GitHub ↗</a></div></div></nav><main><section class="project-hero"><div class="wrap"><div class="eyebrow">Independent Project · Jun 2026 — Present</div><h1>Custom 6-DOF Robotic Arm</h1><p class="lede">A from-scratch robotic arm project spanning mechanical design, embedded control, encoder feedback, a MuJoCo digital twin, inverse kinematics, and handwriting trajectory execution.</p><div class="project-meta"><span>STM32</span><span>Python</span><span>MuJoCo</span><span>SolidWorks</span><span>Trajectory Planning</span><span>Encoder Feedback</span></div><div class="wide-image"><img alt="Custom robot arm" src="../assets/img/arm2.webp"/></div></div></section><section><div class="wrap project-layout"><aside><div class="eyebrow">System</div><h2>From CAD to control.</h2></aside><div><p>I designed and assembled the arm around custom 3D-printed joints, timing-belt reductions, bearings, shafts, and modular actuator mounts. The shoulder and elbow use stepper-driven reductions, while the wrist uses servo actuation. An STM32 controller handles low-level motion and serial commands from a Python desktop interface.</p><p>The software stack grew into a MuJoCo digital twin and trajectory-planning pipeline. The simulated end effector can reproduce single-stroke handwriting paths, while the hardware side has been extended toward absolute-encoder feedback and closed-loop joint execution.</p><div class="demo-cta"><h3>Interactive digital twin</h3><p>Explore the robot in 3D, move each joint, play a showcase sequence, or enter text to watch the end effector reproduce single-stroke handwriting.</p><a class="pill" href="../demos/robot-arm/">Launch interactive model ↗</a></div><h2>Engineering challenges</h2><ul><li>Integrated STM32 stepper control with servo and encoder communication across separate serial interfaces.</li><li>Debugged encoder communication layer-by-layer: UART configuration, raw packet parsing, echo rejection, cable pinout, device IDs, and hardware reliability.</li><li>Built a digital-twin workflow connecting robot geometry, joint limits, inverse kinematics, trajectory generation, and physical execution.</li><li>Evaluated torque, reduction ratio, belt tension, backlash, shaft support, and structural stiffness through repeated mechanical iterations.</li></ul><div class="gallery"><img alt="Robot arm and electronics" src="../assets/img/arm1.webp"/><img alt="Robot arm close-up" src="../assets/img/arm3.webp"/><img alt="Custom robotic arm CAD line drawing" class="cad-lineart" src="../assets/img/arm-cad-lineart.png"/><img alt="Custom robotic arm full assembly" src="../assets/img/arm2.webp"/></div></div></div></section></main><footer class="footer"><div class="wrap footer-in"><span>© 2026 Jeffrey (Zihan) Lin</span><span>Built for robotics, research, and things that move.</span></div></footer><script src="../assets/js/site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="W-D1 — a custom 6-DOF desktop robotic arm designed and built by Jeffrey (Zihan) Lin.">
+  <meta name="theme-color" content="#0b0d10">
+  <title>W-D1 Robotic Arm — Jeffrey Lin</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="preload" as="image" href="../assets/img/wd1-hero.webp" fetchpriority="high">
+</head>
+<body class="project-page">
+  <nav class="site-nav dark-over" aria-label="Primary navigation">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">ZL</span><span>Jeffrey (Zihan) Lin</span></a>
+      <div class="nav-links" id="nav-links"><a href="../index.html#work">Work</a><a href="../index.html#profile">Profile</a><a href="../index.html#contact">Contact</a><a href="../demos/robot-arm/">Digital twin ↗</a><a class="nav-cta" href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a></div>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
+    </div><div class="nav-progress" aria-hidden="true"></div>
+  </nav>
+
+  <main>
+    <section class="project-hero-full">
+      <div class="hero-bg"><img src="../assets/img/wd1-hero.webp" alt="W-D1 robotic arm standing in a raised pose"></div>
+      <div class="wrap project-hero-content">
+        <div class="eyebrow" data-reveal>Independent project · Summer 2026</div>
+        <h1 data-reveal>W-D1<br>Robotic Arm</h1>
+        <p class="project-lede" data-reveal>A from-scratch 6-DOF desktop manipulator built to connect mechanical design, embedded control, absolute sensing, simulation, kinematics, and real hardware in one system.</p>
+        <div class="project-hero-bottom" data-reveal>
+          <div class="project-meta"><span>STM32</span><span>MuJoCo</span><span>SolidWorks</span><span>Python</span><span>Trajectory Planning</span><span>Encoder Feedback</span></div>
+          <div class="project-hero-note">Prototype v1<br>Shanghai · 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-overview">
+      <div class="wrap project-facts">
+        <div class="project-fact"><strong>6 DOF</strong><span>Manipulator architecture</span></div>
+        <div class="project-fact"><strong>STM32</strong><span>Low-level motion control</span></div>
+        <div class="project-fact"><strong>MuJoCo</strong><span>Digital twin + trajectory work</span></div>
+        <div class="project-fact"><strong>From scratch</strong><span>CAD → hardware → software</span></div>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="wrap project-split">
+        <aside class="project-aside" data-reveal><div class="eyebrow">01 / System</div><h2>From CAD<br>to control.</h2><p>The project was intentionally built as a whole robot rather than a collection of separate mechanisms.</p></aside>
+        <div class="project-copy" data-reveal>
+          <p>I designed and assembled W-D1 around <strong>custom 3D-printed joints, timing-belt reductions, bearings, shafts, and modular actuator mounts</strong>. The shoulder and elbow use stepper-driven reductions while the wrist uses servo actuation. An STM32 controller handles low-level motion and serial commands from a Python desktop interface.</p>
+          <p>The software stack grew alongside the hardware into a MuJoCo digital twin and trajectory pipeline. The simulation provides a place to develop kinematics, joint-space motion, and handwriting trajectories before sending commands to the physical arm.</p>
+          <div class="layer-grid">
+            <div class="layer"><span>01 / MECHANICS</span><h3>Structure & transmission</h3><p>Joint packaging, belt reductions, bearings, shafts, stiffness, printability, and repeated physical iteration.</p></div>
+            <div class="layer"><span>02 / EMBEDDED</span><h3>Motion electronics</h3><p>STM32, stepper drivers, servo actuation, serial interfaces, command parsing, and coordinated motion.</p></div>
+            <div class="layer"><span>03 / SENSING</span><h3>Joint state</h3><p>Absolute encoder integration, raw-angle diagnostics, mapping, zero calibration, and feedback development.</p></div>
+            <div class="layer"><span>04 / SOFTWARE</span><h3>Digital twin</h3><p>MuJoCo, kinematics, joint limits, trajectory generation, and a browser-accessible interactive model.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="media-full" data-reveal data-spotlight><img src="../assets/img/wd1-mechanical.webp" alt="W-D1 robotic arm showing belt transmission and mechanical architecture"></div>
+        <div class="media-caption"><span>Mechanical architecture / exposed prototype</span><span>Timing-belt reduction · custom joint housings</span></div>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="wrap">
+        <div class="demo-block" data-reveal>
+          <div class="demo-video"><video src="../assets/img/wd1-demo.mp4" poster="../assets/img/wd1-profile.webp" controls muted playsinline preload="metadata" aria-label="W-D1 robotic arm motion demo"></video></div>
+          <div class="demo-copy">
+            <div><div class="eyebrow">02 / Physical demo</div><h2>Motion,<br>not a render.</h2><p>The prototype executes coordinated multi-joint motion across a large working range. This video captures the current hardware state before final enclosure and wiring cleanup.</p></div>
+            <div><a class="button light" href="../demos/robot-arm/">Launch digital twin <span class="arrow">↗</span></a><p style="margin-top:15px">Interactive browser model with joint controls, showcase motion, and single-stroke handwriting.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="wrap project-split">
+        <aside class="project-aside" data-reveal><div class="eyebrow">03 / Iteration</div><h2>Design,<br>print, break,<br>repeat.</h2><p>The visual history of W-D1 is part of the engineering story: several joint geometries and structural revisions were physically printed and tested.</p></aside>
+        <div data-reveal>
+          <div class="iteration-image"><img src="../assets/img/wd1-iterations.webp" alt="Multiple generations of W-D1 3D-printed robot arm parts laid out on a table"></div>
+          <div class="media-caption"><span>Physical design iterations</span><span>Joint housings · links · base · gripper components</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="wrap project-split">
+        <aside class="project-aside" data-reveal><div class="eyebrow">04 / Integration</div><h2>The messy<br>middle matters.</h2><p>Before clean packaging comes integration: drivers, power, serial buses, sensors, test wiring, and the small failures that reveal how the system actually behaves.</p></aside>
+        <div class="project-copy" data-reveal>
+          <div class="photo-pair"><img src="../assets/img/wd1-bench.webp" alt="W-D1 on a workbench with control electronics"><img src="../assets/img/wd1-profile.webp" alt="W-D1 side profile"></div>
+          <div class="challenge-list">
+            <div class="challenge"><span>01</span><div><h3>Communication</h3><p>Integrated stepper control, servo actuation, encoder communication, serial command parsing, and host-side control across the same prototype.</p></div></div>
+            <div class="challenge"><span>02</span><div><h3>Encoder debugging</h3><p>Traced raw angle behavior, zero references, packet interpretation, and wrap-around behavior instead of treating the sensing layer as a black box.</p></div></div>
+            <div class="challenge"><span>03</span><div><h3>Mechanical tradeoffs</h3><p>Iterated reduction ratios, belt tension, backlash, shaft support, actuator packaging, and structural stiffness under real loads.</p></div></div>
+            <div class="challenge"><span>04</span><div><h3>Model ↔ hardware</h3><p>Built the digital-twin workflow around the same joint structure so simulation, trajectory planning, and the physical arm can converge on a shared model.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a class="project-next" href="harvesting.html" aria-label="Next project: Berry Harvesting Robotics">
+      <div class="project-next-copy"><div><div class="eyebrow">Next project / 02</div><h2>Berry Harvesting Robotics</h2></div><span class="text-link">Continue <span class="arrow">→</span></span></div>
+      <div class="project-next-visual"><img src="../assets/img/harvest1.webp" alt="Berry harvesting robot simulation"></div>
+    </a>
+  </main>
+
+  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Jeffrey (Zihan) Lin</span><a href="../index.html">Back to portfolio ↑</a></div></footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
