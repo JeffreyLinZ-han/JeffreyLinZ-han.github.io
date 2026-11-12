@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Jeffrey (Zihan) Lin — robotics, mechatronics, embedded systems, simulation, and robot learning.">
+  <meta name="description" content="Jeffrey (Zihan) Lin — robotics and mechatronics at Georgia Tech. Explore OpenArm harvesting, a custom robotic arm, and medical robotics.">
   <meta name="theme-color" content="#f8f6f7">
   <title>Jeffrey (Zihan) Lin — Robotics</title>
   <link rel="stylesheet" href="assets/css/site.css">
-  <link rel="preload" as="image" href="assets/img/wd1-hero.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/harvest-media.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="preload" as="image" href="assets/img/harvesting/gripper.webp" fetchpriority="high">
+  <script src="assets/js/harvest-media.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="Jeffrey Lin home"><span class="brand-mark">ZL</span><span>Jeffrey (Zihan) Lin</span></a>
       <div class="nav-links" id="nav-links">
-        <a href="#work">Work</a><a href="#profile">Profile</a><a href="#contact">Contact</a>
-        <a href="https://www.linkedin.com/in/zzzzzihan-lin/en" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <a href="#latest">Latest</a><a href="#work">Work</a><a href="#profile">Profile</a><a href="#contact">Contact</a>
+        <a href="research/">Research ↗</a>
         <a class="nav-cta" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a>
       </div>
       <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
@@ -23,31 +27,40 @@
   </nav>
 
   <main id="top">
-    <section class="home-hero">
+    <section class="home-hero home-hero--motion">
       <div class="hero-copy">
         <div class="hero-copy-top" data-reveal>
-          <div class="hero-kicker mono">Robotics · Mechatronics · Embedded Systems</div>
-          <h1 class="hero-title"><span>Robots,</span><span>from the</span><span class="accent">inside out.</span></h1>
-          <p class="hero-lede">I design the mechanism, build the hardware, write the control, and keep iterating until the physical robot and the model agree.</p>
+          <div class="hero-kicker mono">Robotics / Mechatronics / Georgia Tech</div>
+          <h1 class="hero-title"><span>Mechanisms.</span><span>Motion.</span><span class="accent">Manipulation.</span></h1>
+          <p class="hero-lede">I work across mechanical design, embedded control, and simulation to build and study robotic systems—from a custom arm to roller-driven harvesting.</p>
           <div class="hero-actions">
-            <a class="button dark" href="#work">Selected work <span class="arrow">↓</span></a>
-            <a class="button" href="mailto:zlin439@gatech.edu">Email me <span class="arrow">↗</span></a>
+            <a class="button dark" href="#work">Explore my work <span class="arrow">↓</span></a>
+            <a class="button" href="mailto:zlin439@gatech.edu">Get in touch <span class="arrow">↗</span></a>
           </div>
         </div>
-        <div class="hero-foot" data-reveal>
-          <div><strong>Georgia Tech</strong>B.S. Biomedical Engineering · Robotics Minor</div>
-          <div class="scroll-cue"><i aria-hidden="true"></i><span>Explore</span></div>
-        </div>
+        <div class="hero-foot" data-reveal><div><strong>Jeffrey (Zihan) Lin</strong>Georgia Tech · Biomedical Engineering · Robotics Minor</div></div>
       </div>
-
-      <a class="hero-visual" href="projects/robot-arm.html" aria-label="View W-D1 robotic arm project" data-spotlight>
-        <img src="assets/img/wd1-hero.webp" alt="W-D1 custom robotic arm in a raised pose">
-        <span class="hero-crosshair" aria-hidden="true"></span>
-        <div class="hero-visual-meta">
-          <div><strong>W-D1</strong><span>6-DOF robotic arm · 2026</span></div>
-          <div class="hero-index">FLAGSHIP / 01</div>
+      <div class="latest-project" id="latest">
+        <div class="latest-project-heading">
+          <div><div class="eyebrow">Latest work / In motion</div><h2>OpenArm berry harvesting</h2></div>
+          <span>2026</span>
         </div>
-      </a>
+        <section class="film-player" data-harvest-player aria-label="OpenArm harvesting camera sequence">
+          <div class="film-screen"><video muted playsinline preload="none" controls poster="assets/img/harvesting/gripper.webp" aria-label="OpenArm roller harvesting simulation"><source src="assets/video/harvesting/gripper.mp4" type="video/mp4"></video></div>
+          <div class="film-progress" aria-hidden="true"><span data-film-progress></span></div>
+          <div class="film-caption">
+            <div><span class="film-kicker">MUJOCO / SCRIPTED DEMONSTRATION</span><h3 data-film-title>Gripper &amp; camera</h3><p data-film-description>Approach, roller picking, and release with the upright RealSense assembly.</p></div>
+            <button type="button" class="film-toggle" data-film-toggle hidden>Play</button>
+          </div>
+          <div class="film-views" role="group" aria-label="Camera views">
+            <button type="button" data-film-src="assets/video/harvesting/gripper.mp4" data-film-poster="assets/img/harvesting/gripper.webp" data-film-title="Gripper &amp; camera" data-film-description="Approach, roller picking, and release with the upright RealSense assembly." aria-pressed="true"><span>01</span><strong>Gripper &amp; camera</strong></button>
+            <button type="button" data-film-src="assets/video/harvesting/contact.mp4" data-film-poster="assets/img/harvesting/contact.webp" data-film-title="Rollers &amp; collection" data-film-description="A closer look at belt–fruit contact, detachment, and the collection tray." aria-pressed="false"><span>02</span><strong>Rollers &amp; collection</strong></button>
+            <button type="button" data-film-src="assets/video/harvesting/overview.mp4" data-film-poster="assets/img/harvesting/overview.webp" data-film-title="Whole plant" data-film-description="The robot and target cluster in the full berry-bush scene." aria-pressed="false"><span>03</span><strong>Whole plant</strong></button>
+          </div>
+          <p class="film-status" data-film-status role="status"></p>
+        </section>
+        <div class="latest-project-footer"><a class="text-link" href="projects/harvesting.html">Explore the project <span class="arrow">↗</span></a><span>Three views · normal speed</span></div>
+      </div>
     </section>
 
     <div class="signal-strip" aria-label="Robotics workflow">
@@ -56,11 +69,11 @@
       </div>
     </div>
 
-    <section class="work-section" id="work">
+    <section class="work-section home-work" id="work">
       <div class="wrap">
         <div class="section-intro" data-reveal>
-          <div><div class="eyebrow">Selected work</div><h2 class="section-title">Built. Tested.<br>Built again.</h2></div>
-          <p>I like the moment when CAD stops being a model and starts arguing with reality. These projects live in that gap — mechanics, electronics, firmware, sensing, and simulation all pulling on the same system.</p>
+          <div><div class="eyebrow">Selected work</div><h2 class="section-title">Robotics, in<br>three projects.</h2></div>
+          <p>Independent builds and lab research across robot mechanisms, embedded systems, manipulation, and medical robotics. Each project connects a model to the system it describes.</p>
         </div>
 
         <article class="flagship" data-reveal>
@@ -69,7 +82,7 @@
             <div>
               <div class="project-index">01 / INDEPENDENT · SHANGHAI</div>
               <h3>W-D1<br>Robotic Arm</h3>
-              <p>I wanted one project where I had to own the whole chain. W-D1 became that project: mechanisms, belt drives, STM32 control, sensing, a MuJoCo twin, and enough physical revisions to make the motion believable.</p>
+              <p>A six-axis manipulator I designed and built across mechanical structure, belt drives, STM32 control, and joint sensing, with a MuJoCo twin for kinematics and trajectory work.</p>
               <div class="flagship-meta"><span>STM32</span><span>MuJoCo</span><span>SolidWorks</span><span>Python</span><span>3D Printing</span></div>
               <div class="home-quicklinks"><a href="projects/robot-arm.html#motion">Motion</a><a href="projects/robot-arm.html#assembly">Build clip</a><a href="demos/robot-arm/">Digital twin ↗</a><a href="projects/robot-arm.html">Full story ↗</a></div>
             </div>
@@ -79,8 +92,8 @@
 
         <div class="project-grid">
           <article class="project-tile" data-reveal>
-            <a class="project-tile-media" href="projects/harvesting.html"><img src="assets/img/harvest1.webp" alt="Berry harvesting manipulator in MuJoCo"></a>
-            <div class="project-tile-body"><div class="project-index dark">02</div><div><h3>Berry Harvesting Robotics</h3><p>CAD/URDF-to-MuJoCo simulation pipeline for a complex harvesting manipulator, prepared for perception and manipulation research.</p><a class="text-link" href="projects/harvesting.html">View project <span class="arrow">→</span></a></div></div>
+            <a class="project-tile-media" href="projects/harvesting.html"><img src="assets/img/harvesting/gripper.webp" alt="OpenArm roller gripper with its upright RealSense camera in MuJoCo" loading="lazy"></a>
+            <div class="project-tile-body"><div class="project-index dark">02</div><div><h3>OpenArm Berry Harvesting</h3><p>OpenArm integration, elastic-band contact, and load-dependent fruit detachment, with a scripted MuJoCo harvesting demonstration.</p><a class="text-link" href="projects/harvesting.html">View project <span class="arrow">→</span></a></div></div>
           </article>
           <article class="project-tile" data-reveal>
             <a class="project-tile-media" href="projects/needle.html"><img src="assets/img/needle1.webp" alt="MRI-compatible needle intervention robot CAD"></a>
@@ -90,17 +103,17 @@
       </div>
     </section>
 
-    <section class="system-section">
+    <section class="system-section home-focus">
       <div class="wrap">
         <div class="system-intro" data-reveal>
-          <div><div class="eyebrow" style="color:rgba(255,255,255,.5)">How I work</div><h2>Where it gets<br>interesting.</h2></div>
-          <p>The interesting part is never one layer by itself. It is the handoff: geometry into torque, voltage into motion, sensor packets into state, and a simulation into something the real robot can actually do.</p>
+          <div><div class="eyebrow" style="color:rgba(255,255,255,.5)">How I work</div><h2>From geometry<br>to motion.</h2></div>
+          <p>My work connects mechanical assemblies, actuator commands, and simulated behavior. The current harvesting project adds contact and detachment; the next step is policy-driven manipulation.</p>
         </div>
         <div class="system-grid">
-          <div class="system-cell" data-reveal><div class="system-number">01 / MECHANISM</div><h3>Give it a body.</h3><p>CAD, bearings, belt reductions, shafts, joint architecture, packaging, and 3D-printed iteration.</p></div>
-          <div class="system-cell" data-reveal><div class="system-number">02 / CONTROL</div><h3>Give it motion.</h3><p>STM32, stepper and servo control, serial protocols, encoder feedback, and actuator integration.</p></div>
-          <div class="system-cell" data-reveal><div class="system-number">03 / SIMULATION</div><h3>Give it a twin.</h3><p>MuJoCo, URDF/MJCF, kinematics, joint limits, trajectory generation, and browser visualization.</p></div>
-          <div class="system-cell" data-reveal><div class="system-number">04 / INTELLIGENCE</div><h3>Then close the loop.</h3><p>Perception, visual servoing, motion planning, manipulation, and learning-based control.</p></div>
+          <div class="system-cell" data-reveal><div class="system-number">01 / MECHANISM</div><h3>Mechanism.</h3><p>CAD, bearings, belt reductions, shafts, joint architecture, packaging, and 3D-printed iteration.</p></div>
+          <div class="system-cell" data-reveal><div class="system-number">02 / CONTROL</div><h3>Actuation.</h3><p>STM32, stepper and servo control, serial protocols, encoder feedback, and actuator integration.</p></div>
+          <div class="system-cell" data-reveal><div class="system-number">03 / SIMULATION</div><h3>Simulation.</h3><p>MuJoCo, Newton, URDF/MJCF, kinematics, contact modeling, and browser visualization.</p></div>
+          <div class="system-cell" data-reveal><div class="system-number">04 / NEXT STEPS</div><h3>Learn the control.</h3><p>Develop policies to choose gripper force, roller direction, and speed. Perception and learning remain active research directions.</p></div>
         </div>
       </div>
     </section>
@@ -111,20 +124,20 @@
           <img src="assets/img/profile.webp" alt="Jeffrey Zihan Lin">
           <div class="eyebrow" style="margin-top:28px">Profile</div>
           <h2>Jeffrey<br>(Zihan) Lin</h2>
-          <p>Biomedical Engineering at Georgia Tech, but most of my free time ends up somewhere between a CAD assembly, an STM32, and a robot that still needs one more revision.</p>
+          <p>I study Biomedical Engineering at Georgia Tech with a Robotics Minor. My projects connect mechanisms and embedded systems with simulation, with interests in manipulation and medical robotics.</p>
           <a class="text-link" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Open résumé <span class="arrow">↗</span></a>
         </aside>
         <div>
           <div class="eyebrow" data-reveal>Research & engineering</div>
           <div class="timeline-list">
-            <div class="timeline-row" data-reveal><time>2026 — Present</time><div><h3>BioMedical Mechatronics Lab</h3><div class="org">Georgia Institute of Technology · Robotics Research</div><p>Simulation infrastructure and mechanical design work spanning berry-harvesting manipulation and an MRI-compatible robotic needle intervention platform.</p></div></div>
+            <div class="timeline-row" data-reveal><time>2026 — Present</time><div><h3>BioMedical Mechatronics Lab</h3><div class="org">Georgia Institute of Technology · Robotics Research</div><p>Simulation and integration for OpenArm roller harvesting, building on an earlier RRP platform, alongside mechanical design for an MRI-compatible needle intervention system.</p></div></div>
             <div class="timeline-row" data-reveal><time>Summer 2026</time><div><h3>W-D1 Custom 6-DOF Robotic Arm</h3><div class="org">Independent Project · Shanghai</div><p>Full-stack prototype development across mechanical design, power transmission, embedded control, sensing, digital-twin simulation, kinematics, and trajectory execution.</p></div></div>
             <div class="timeline-row" data-reveal><time>2026 — 2028</time><div><h3>Georgia Institute of Technology</h3><div class="org">B.S. Biomedical Engineering · Minor in Robotics</div><p>Building toward robotics through mechatronics, embedded systems, controls, perception, manipulation, and learning.</p></div></div>
             <div class="timeline-row" data-reveal><time>2024 — 2025</time><div><h3>University of Florida</h3><div class="org">Biomedical Engineering</div><p>Engineering foundation in mathematics, programming, circuits, physiology, and research.</p></div></div>
           </div>
           <div class="toolbox">
             <div class="toolbox-cell" data-reveal><h4>Code</h4><p>Python · C · MATLAB</p></div>
-            <div class="toolbox-cell" data-reveal><h4>Robotics</h4><p>MuJoCo · URDF/MJCF · Kinematics · Sensor–actuator integration</p></div>
+            <div class="toolbox-cell" data-reveal><h4>Robotics</h4><p>ROS 2 · MuJoCo · Newton · URDF/MJCF · Kinematics</p></div>
             <div class="toolbox-cell" data-reveal><h4>Hardware</h4><p>STM32 · SolidWorks · CAD · 3D printing · Stepper/servo systems</p></div>
           </div>
         </div>
@@ -133,13 +146,13 @@
 
     <section class="contact-section" id="contact">
       <div class="wrap contact-inner" data-reveal>
-        <div class="eyebrow">Contact</div><h2>Build something that should move?</h2>
+        <div class="eyebrow">Contact</div><h2>Let’s build something that moves.</h2>
         <div class="contact-actions"><a class="button light" href="mailto:zlin439@gatech.edu">zlin439@gatech.edu <span class="arrow">↗</span></a><a class="button light" href="https://github.com/JeffreyLinZ-han" target="_blank" rel="noreferrer">GitHub <span class="arrow">↗</span></a><a class="button light" href="https://www.linkedin.com/in/zzzzzihan-lin/en" target="_blank" rel="noreferrer">LinkedIn <span class="arrow">↗</span></a></div>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Jeffrey (Zihan) Lin</span><span>Built, broken, revised — then made presentable.</span></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Jeffrey (Zihan) Lin</span><span>Robotics · Mechatronics · Simulation</span></div></footer>
   <script src="assets/js/site.js"></script>
 </body>
 </html>

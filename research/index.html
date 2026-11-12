@@ -7,6 +7,9 @@
   <meta name="theme-color" content="#f4f5f6" />
   <title>Zihan Lin — Robotics Research Portfolio</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="../assets/css/harvesting-project.css" />
+  <link rel="stylesheet" href="../assets/css/harvest-media.css" />
+  <script defer src="../assets/js/harvest-media.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -130,58 +133,49 @@
         </div>
       </article>
 
-      <article class="project" id="harvesting">
+      <article class="project harvest-research" id="harvesting">
         <div class="project-heading">
           <div>
             <p class="project-index">02 · BioMedical Mechatronics Lab · Georgia Tech</p>
-            <h3>Berry Harvesting Robot Simulation</h3>
+            <h3>OpenArm Berry Harvesting</h3>
           </div>
           <div class="project-links">
-            <a href="../demos/harvesting/" target="_blank" rel="noopener">Open model ↗</a>
-            <a href="../projects/harvesting.html" target="_blank" rel="noopener">Full project page ↗</a>
+            <a href="https://github.com/JeffreyLinZ-han/Blue_Berry_Harvesting_Bot" target="_blank" rel="noopener">Source code ↗</a>
+            <a href="../projects/harvesting.html">Full project page ↗</a>
           </div>
         </div>
-
-        <div class="project-two-column">
-          <button class="media tall-media" data-lightbox="../assets/img/harvest1.webp" data-caption="Berry-harvesting manipulator reconstructed in MuJoCo.">
-            <img src="../assets/img/harvest1.webp" alt="Berry harvesting robot in MuJoCo" />
-            <span>MuJoCo model</span>
-          </button>
-          <div class="technical-blocks standalone">
-            <section>
-              <h4>Project scope</h4>
-              <p>The starting point was an existing, mechanically complex harvesting platform. My task was to turn exported CAD and URDF assets into a usable simulation model rather than redesign the physical robot.</p>
-            </section>
-            <section>
-              <h4>Technical work</h4>
-              <p>Processed more than 100 STL components, rebuilt the articulated hierarchy, and corrected mesh orientation, coordinate frames, origins, and joint relationships during the CAD/URDF-to-MuJoCo conversion.</p>
-            </section>
-            <section>
-              <h4>Main difficulty</h4>
-              <p>The challenge was consistency across many inherited parts. A model can look visually correct while the joint frames are wrong, so debugging required separating mesh transforms from kinematic transforms and checking the hierarchy one joint at a time.</p>
-            </section>
-            <section>
-              <h4>Research use</h4>
-              <p>The simulation is being prepared as infrastructure for inverse kinematics, motion planning, fruit perception, visual servoing, and later learning-based manipulation experiments.</p>
-            </section>
-            <div class="tag-row"><span>MuJoCo</span><span>URDF</span><span>MJCF</span><span>Robot modeling</span><span>Coordinate frames</span></div>
-          </div>
+        <p class="harvest-research-lede">I integrate the original RRP roller gripper and RealSense D435 assembly with the OpenArm dual-arm platform, and develop the simulation of belt contact, flexible stems, and fruit detachment. The MuJoCo demonstration below follows a prescribed picking sequence.</p>
+        <section class="film-player" data-harvest-player aria-label="OpenArm harvesting demonstration">
+          <div class="film-screen"><video muted playsinline preload="none" controls poster="../assets/img/harvesting/gripper.webp" aria-label="OpenArm roller harvesting simulation"><source src="../assets/video/harvesting/gripper.mp4" type="video/mp4">Your browser cannot play this video. <a href="../assets/video/harvesting/gripper.mp4">Download the harvesting demonstration.</a></video></div>
+          <div class="film-progress" aria-hidden="true"><span data-film-progress></span></div>
+          <div class="film-caption"><div><span class="film-kicker">MUJOCO / SCRIPTED DEMONSTRATION</span><h3 data-film-title>Gripper &amp; camera</h3><p data-film-description>Approach, roller picking, and release with the upright RealSense assembly.</p></div><button type="button" class="film-toggle" data-film-toggle hidden>Play</button></div>
+          <div class="film-views" role="group" aria-label="Camera views">
+            <button type="button" data-film-src="../assets/video/harvesting/gripper.mp4" data-film-poster="../assets/img/harvesting/gripper.webp" data-film-title="Gripper &amp; camera" data-film-description="Approach, roller picking, and release with the upright RealSense assembly." aria-pressed="true"><span>01</span><strong>Gripper &amp; camera</strong></button>
+            <button type="button" data-film-src="../assets/video/harvesting/contact.mp4" data-film-poster="../assets/img/harvesting/contact.webp" data-film-title="Rollers &amp; collection" data-film-description="Contact and collection detail, with the surrounding bush and inactive arm hidden." aria-pressed="false"><span>02</span><strong>Rollers &amp; collection</strong></button>
+            <button type="button" data-film-src="../assets/video/harvesting/overview.mp4" data-film-poster="../assets/img/harvesting/overview.webp" data-film-title="Whole plant" data-film-description="The OpenArm platform and target cluster within the full bush scene." aria-pressed="false"><span>03</span><strong>Whole plant</strong></button>
+          </div><p class="film-status" data-film-status role="status"></p>
+        </section>
+        <dl class="harvest-result-strip"><div><dt>Recorded sequence</dt><dd>15.3<span>s</span></dd></div><div><dt>Ripe berries collected</dt><dd>2<span>/ 3</span></dd></div><div><dt>Unripe berries dropped</dt><dd>0<span>/ 5</span></dd></div></dl>
+        <p class="harvest-scope-note">Counts from one preset run, with both ripe-fruit releases occurring during roller operation. This is a demonstration, not a statistical performance evaluation.</p>
+        <div class="harvest-research-grid">
+          <section><h4>System integration</h4><p>Mount the existing grippers on both OpenArm wrists, align the CAD meshes and joint frames in MJCF and URDF, and retain the upright D435 housing, bracket, and optical frames. My contribution is the integration and simulation of these existing designs.</p></section>
+          <section><h4>Contact &amp; detachment</h4><p>Segmented elastic belts run around the rollers and contact the modeled fruit. Flexible stems and a load-and-fatigue attachment model govern release. The eight-fruit target cluster carries the physical interactions; the surrounding bush provides visual context.</p></section>
+          <section><h4>Simulation workflow</h4><p>MuJoCo and an optional Newton backend use the project's generated scene assets. This recording uses MuJoCo, with terminal logs for picked fruit, unripe drops, and peak squeeze estimates. Recorded states provide selected views of the gripper, roller contact, and whole plant.</p></section>
+          <section><h4>Next: a picking policy</h4><p>Develop a policy to select gripping force, roller direction, and speed as contact changes. The current motion is scripted. Camera-based fruit recognition and learned control are future work.</p></section>
         </div>
-
-        <div class="interactive-block">
+        <div class="interactive-block harvest-archive">
           <div class="interactive-heading">
-            <div><p class="overline">Interactive model</p><h4>Harvesting manipulator</h4><p>Inspect the articulated platform and operate the exposed simulated joints directly in the browser.</p></div>
-            <a class="button small" href="../demos/harvesting/" target="_blank" rel="noopener">Open full screen ↗</a>
+            <div><p class="overline">Earlier platform / RRP</p><h4>Original RRP harvesting workstation</h4><p>The original revolute–revolute–prismatic robot preceded the OpenArm integration above. I processed more than 100 STL components and rebuilt its articulated hierarchy and coordinate frames. This browser model preserves that earlier platform.</p></div>
+            <a class="button small" href="../demos/harvesting/" target="_blank" rel="noopener">Open original RRP model ↗</a>
           </div>
-          <div class="iframe-wrap"><iframe src="../demos/harvesting/" title="Interactive berry harvesting robot model" loading="lazy"></iframe></div>
+          <div class="iframe-wrap"><iframe src="../demos/harvesting/" title="Original RRP harvesting workstation — interactive archive" loading="lazy"></iframe></div>
+          <p class="harvest-archive-source"><a href="https://github.com/JeffreyLinZ-han/Blue_Berry_Harvesting_Bot/tree/Zihan/harvesting-workstation" target="_blank" rel="noopener">Browse the original RRP source branch ↗</a></p>
         </div>
-
         <div class="gallery two">
-          <button class="media" data-lightbox="../assets/img/harvest2.webp" data-caption="Harvesting robot in a neutral simulated pose."><img src="../assets/img/harvest2.webp" alt="Harvesting robot neutral pose" /><span>Neutral pose</span></button>
-          <button class="media" data-lightbox="../assets/img/harvest1.webp" data-caption="Harvesting robot in an articulated simulated pose."><img src="../assets/img/harvest1.webp" alt="Harvesting robot articulated pose" /><span>Articulated pose</span></button>
+          <button class="media" data-lightbox="../assets/img/harvest2.webp" data-caption="Original RRP harvesting workstation in a neutral simulated pose."><img src="../assets/img/harvest2.webp" alt="Original RRP harvesting robot in a neutral simulated pose" loading="lazy" /><span>Original RRP · neutral pose</span></button>
+          <button class="media" data-lightbox="../assets/img/harvest1.webp" data-caption="Original RRP harvesting workstation in an articulated simulated pose."><img src="../assets/img/harvest1.webp" alt="Original RRP harvesting robot in an articulated simulated pose" loading="lazy" /><span>Original RRP · articulated pose</span></button>
         </div>
       </article>
-
       <article class="project" id="needle">
         <div class="project-heading">
           <div>

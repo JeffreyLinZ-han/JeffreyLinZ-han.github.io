@@ -1,10 +1,84 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Berry harvesting robotics simulation work by Jeffrey (Zihan) Lin."><meta name="theme-color" content="#f8f6f7"><title>Berry Harvesting Robotics — Jeffrey Lin</title><link rel="stylesheet" href="../assets/css/site.css"></head>
-<body class="project-page">
-<nav class="site-nav" aria-label="Primary navigation"><div class="wrap nav-inner"><a class="brand" href="../index.html"><span class="brand-mark">ZL</span><span>Jeffrey (Zihan) Lin</span></a><div class="nav-links" id="nav-links"><a href="../index.html#work">Work</a><a href="../index.html#profile">Profile</a><a href="../index.html#contact">Contact</a><a href="../demos/harvesting/">Interactive model ↗</a><a class="nav-cta" href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a></div><button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button></div><div class="nav-progress"></div></nav>
-<main>
-<section class="project-simple-hero"><div class="wrap"><div class="eyebrow" data-reveal>BioMedical Mechatronics Lab · Georgia Tech</div><h1 data-reveal>Berry Harvesting Robotics</h1><p class="lede" data-reveal>The robot already existed in CAD. The hard part was making that geometry behave like a robot in simulation — frames, joints, meshes, hierarchy, and all.</p><div class="project-meta" data-reveal><span>MuJoCo</span><span>CAD / URDF</span><span>100+ STL components</span><span>Manipulation</span></div><div class="hero-actions" data-reveal><a class="button sunset" href="../demos/harvesting/">Open interactive model <span class="arrow">↗</span></a><a class="button" href="#story">Read the build story ↓</a></div><a class="wide-image clickable-media" href="../assets/img/harvest1.webp" data-lightbox data-caption="Berry-harvesting manipulator reconstructed in MuJoCo." data-reveal><img src="../assets/img/harvest1.webp" alt="Harvesting robot MuJoCo model"><span class="media-open">＋</span></a></div></section>
-<section class="project-body" id="story"><div class="wrap project-body-layout"><aside data-reveal><div class="eyebrow">Simulation</div><h2>Make the geometry tell the truth.</h2></aside><div class="project-body-main" data-reveal><p>The first challenge was not planning a clever grasp. It was getting a large inherited assembly to agree on something as basic as where its axes actually were.</p><p>I restructured the model around a clean joint hierarchy, fixed coordinate-frame and mesh-orientation problems, and turned a large pile of exported geometry into a simulation-ready manipulator. The result is now a base for inverse kinematics, motion planning, fruit perception, visual servoing, and learning-based manipulation.</p><div class="demo-cta"><div><h3>Touch the model yourself.</h3><p>The browser version exposes base yaw, shoulder pitch, telescoping extension, wrist motion, and gripper control — no plugin required.</p></div><a class="button light" href="../demos/harvesting/">Launch model <span class="arrow">↗</span></a></div><div class="gallery"><a href="../assets/img/harvest2.webp" data-lightbox data-caption="Harvesting arm in a neutral simulated pose."><img src="../assets/img/harvest2.webp" alt="Harvesting arm neutral pose"><span class="media-open">＋</span></a><a href="../assets/img/harvest1.webp" data-lightbox data-caption="Harvesting arm in an articulated simulated pose."><img src="../assets/img/harvest1.webp" alt="Harvesting arm articulated pose"><span class="media-open">＋</span></a></div></div></div></section>
-<a class="project-next" href="needle.html"><div class="project-next-copy"><div><div class="eyebrow">Next project / 03</div><h2>MRI Needle Intervention</h2></div><span class="text-link">Continue <span class="arrow">→</span></span></div><div class="project-next-visual"><img src="../assets/img/needle1.webp" alt="MRI needle robot CAD"></div></a>
-</main><footer class="footer"><div class="wrap footer-inner"><span>© 2026 Jeffrey (Zihan) Lin</span><a href="../index.html">Back to portfolio ↑</a></div></footer><script src="../assets/js/site.js"></script></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="OpenArm berry-harvesting simulation by Jeffrey (Zihan) Lin: roller-gripper integration, elastic contact, fruit detachment, and a MuJoCo demonstration.">
+  <meta name="theme-color" content="#f8f6f7">
+  <title>OpenArm Berry Harvesting — Jeffrey Lin</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/harvesting-project.css">
+  <link rel="stylesheet" href="../assets/css/harvest-media.css">
+  <script defer src="../assets/js/harvest-media.js"></script>
+</head>
+<body class="project-page harvest-project">
+  <a class="harvest-skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">ZL</span><span>Jeffrey (Zihan) Lin</span></a>
+      <div class="nav-links" id="nav-links"><a href="../index.html#work">Work</a><a href="../research/">Research</a><a href="#system">The system</a><a href="#source">Source code ↗</a><a class="nav-cta" href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a></div>
+      <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
+    </div><div class="nav-progress"></div>
+  </nav>
+  <main id="main">
+    <section class="harvest-hero" aria-labelledby="harvest-title">
+      <div class="wrap">
+        <div class="harvest-hero-grid">
+          <div><div class="eyebrow" data-reveal>BioMedical Mechatronics Lab · Georgia Tech</div><h1 id="harvest-title" data-reveal>OpenArm<br><span>berry harvesting.</span></h1></div>
+          <div class="harvest-hero-copy" data-reveal><p>Integrating an existing roller gripper and RealSense camera assembly with OpenArm, then modeling how the belts contact and detach fruit.</p><div class="harvest-tags" aria-label="Project focus"><span>System integration</span><span>Contact simulation</span><span>Manipulation</span></div><a class="text-link" href="#system">Explore the system <span class="arrow">↓</span></a></div>
+        </div>
+        <section class="film-player" data-harvest-player aria-label="OpenArm harvesting demonstration">
+          <div class="film-screen"><video muted playsinline preload="none" controls poster="../assets/img/harvesting/gripper.webp" aria-label="OpenArm roller harvesting simulation"><source src="../assets/video/harvesting/gripper.mp4" type="video/mp4">Your browser cannot play this video. <a href="../assets/video/harvesting/gripper.mp4">Download the harvesting demonstration.</a></video></div>
+          <div class="film-progress" aria-hidden="true"><span data-film-progress></span></div>
+          <div class="film-caption"><div><span class="film-kicker">MUJOCO / SCRIPTED DEMONSTRATION</span><h3 data-film-title>Gripper &amp; camera</h3><p data-film-description>Approach, roller picking, and release with the upright RealSense assembly.</p></div><button type="button" class="film-toggle" data-film-toggle hidden>Play</button></div>
+          <div class="film-views" role="group" aria-label="Camera views">
+            <button type="button" data-film-src="../assets/video/harvesting/gripper.mp4" data-film-poster="../assets/img/harvesting/gripper.webp" data-film-title="Gripper &amp; camera" data-film-description="Approach, roller picking, and release with the upright RealSense assembly." aria-pressed="true"><span>01</span><strong>Gripper &amp; camera</strong></button>
+            <button type="button" data-film-src="../assets/video/harvesting/contact.mp4" data-film-poster="../assets/img/harvesting/contact.webp" data-film-title="Rollers &amp; collection" data-film-description="Contact and collection detail, with the surrounding bush and inactive arm hidden." aria-pressed="false"><span>02</span><strong>Rollers &amp; collection</strong></button>
+            <button type="button" data-film-src="../assets/video/harvesting/overview.mp4" data-film-poster="../assets/img/harvesting/overview.webp" data-film-title="Whole plant" data-film-description="The OpenArm platform and target cluster within the full bush scene." aria-pressed="false"><span>03</span><strong>Whole plant</strong></button>
+          </div><p class="film-status" data-film-status role="status"></p>
+        </section>
+        <p class="harvest-film-note">Selected views from the same 15.3-second MuJoCo sequence. The rollers operate while the arm holds its grasp pose; release and retreat follow.</p>
+      </div>
+    </section>
+    <section class="harvest-section harvest-system" id="system" aria-labelledby="system-title">
+      <div class="wrap harvest-section-grid">
+        <div class="harvest-section-intro" data-reveal><div class="eyebrow">01 / System &amp; contribution</div><h2 id="system-title">Making the parts<br>work together.</h2><p>The OpenArm platform and roller gripper come from existing hardware designs. My work is their integration and simulation: consistent geometry, motion, contact, and recorded behavior.</p><div class="harvest-role"><span>My role</span><strong>Robot integration<br>Simulation development</strong></div></div>
+        <div class="harvest-work-list" data-reveal>
+          <section><span class="harvest-step">01</span><div><h3>Connect the assemblies</h3><p>The original RRP platform's roller gripper is mounted on both OpenArm wrists. I carry the CAD geometry into MJCF and URDF, align the joint and mesh frames, and retain the upright RealSense D435 housing, mounting bracket, and optical frames.</p></div></section>
+          <section><span class="harvest-step">02</span><div><h3>Model the picking contact</h3><p>Segmented elastic bands run around the rollers and contact the modeled fruit. Flexible stems and a load-and-fatigue attachment model determine when a berry releases. Terminal logs report picked fruit, unripe drops, and peak squeeze estimates.</p></div></section>
+          <section><span class="harvest-step">03</span><div><h3>Build a repeatable workflow</h3><p>The project supports MuJoCo and an optional Newton backend through converted scene assets. The demonstration shown here runs in MuJoCo. Preset motions and recorded simulation states make the contact sequence available from several camera views.</p></div></section>
+        </div>
+      </div>
+    </section>
+    <section class="harvest-section" id="results" aria-labelledby="results-title">
+      <div class="wrap">
+        <div class="harvest-section-head" data-reveal><div><div class="eyebrow">02 / A recorded trial</div><h2 id="results-title">What this run shows.</h2></div><p>Both ripe-fruit releases occur during roller operation. These are counts from one preset sequence; broader performance evaluation is still ahead.</p></div>
+        <dl class="harvest-result-strip" data-reveal><div><dt>Recorded sequence</dt><dd>15.3<span>s</span></dd></div><div><dt>Ripe berries collected</dt><dd>2<span>/ 3</span></dd></div><div><dt>Unripe berries dropped</dt><dd>0<span>/ 5</span></dd></div></dl>
+        <div class="harvest-next-step" data-reveal><div><span class="harvest-label">Next research step</span><h3>Choose the force,<br>direction, and speed.</h3></div><div><p>The next step is a policy that selects the gripping force and roller direction and speed, then adjusts the action as contact changes.</p><p>The current sequence uses prescribed commands. The D435 model and camera views are in place; learned control and camera-based fruit recognition remain future work.</p></div></div>
+        <p class="harvest-scope-note">The full bush provides visual context. The eight-fruit target cluster carries the simulated contact, stem, and detachment behavior.</p>
+      </div>
+    </section>
+    <section class="harvest-section harvest-history" id="history" aria-labelledby="history-title">
+      <div class="wrap harvest-history-grid">
+        <div class="harvest-history-copy" data-reveal><div class="eyebrow">03 / Earlier platform</div><h2 id="history-title">The original<br>RRP workstation.</h2><p>This work began with an existing revolute–revolute–prismatic harvesting robot. I processed more than 100 exported STL components, rebuilt the articulated hierarchy, and corrected mesh origins and coordinate frames for simulation.</p><p>That platform is preserved as the project's history. The linked browser model shows the original RRP robot, including its telescoping arm and wrist controls.</p><a class="button dark" href="../demos/harvesting/">Explore the original RRP model <span class="arrow">↗</span></a></div>
+        <div class="harvest-history-images" data-reveal>
+          <a href="../assets/img/harvest2.webp" data-lightbox data-caption="Original RRP harvesting workstation in a neutral simulated pose."><img src="../assets/img/harvest2.webp" alt="Original RRP harvesting workstation with telescoping arm, in a neutral MuJoCo pose" loading="lazy"><span>Original RRP · neutral pose</span></a>
+          <a href="../assets/img/harvest1.webp" data-lightbox data-caption="Original RRP harvesting workstation in an articulated simulated pose."><img src="../assets/img/harvest1.webp" alt="Original RRP harvesting workstation with its arm articulated" loading="lazy"><span>Original RRP · articulated pose</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="harvest-section harvest-source" id="source" aria-labelledby="source-title">
+      <div class="wrap">
+        <div class="harvest-section-head" data-reveal><div><div class="eyebrow">04 / Explore the work</div><h2 id="source-title">Models, motion,<br>and source.</h2></div><p>The repository keeps the current OpenArm simulation and the earlier RRP platform accessible in separate branches.</p></div>
+        <div class="harvest-source-grid" data-reveal>
+          <a href="https://github.com/JeffreyLinZ-han/Blue_Berry_Harvesting_Bot" target="_blank" rel="noopener noreferrer"><div><span class="harvest-label">Current project · main</span><h3>OpenArm harvesting</h3><p>Model generation, simulation backends, roller motion, and video rendering.</p></div><span class="harvest-source-arrow" aria-hidden="true">↗</span></a>
+          <a href="https://github.com/JeffreyLinZ-han/Blue_Berry_Harvesting_Bot/tree/Zihan/harvesting-workstation" target="_blank" rel="noopener noreferrer"><div><span class="harvest-label">Original platform · archive</span><h3>RRP workstation</h3><p>The original ROS 2, CAD, URDF, and MuJoCo harvesting system.</p></div><span class="harvest-source-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+    <a class="project-next" href="needle.html"><div class="project-next-copy"><div><div class="eyebrow">Next project / 03</div><h2>MRI Needle Intervention</h2></div><span class="text-link">Continue <span class="arrow">→</span></span></div><div class="project-next-visual"><img src="../assets/img/needle1.webp" alt="MRI needle robot CAD" loading="lazy"></div></a>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Jeffrey (Zihan) Lin</span><a href="../index.html">Back to portfolio ↑</a></div></footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
