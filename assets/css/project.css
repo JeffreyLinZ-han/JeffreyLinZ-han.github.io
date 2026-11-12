@@ -1,0 +1,52 @@
+.simple-project .brand,
+.simple-project .nav-links { font-size: 15px; }
+.simple-project .menu-toggle { min-width: 44px; min-height: 44px; }
+.project-skip { position: fixed; top: 12px; left: 16px; z-index: 200; padding: 12px 18px; background: var(--ink); color: white; transform: translateY(-160%); }
+.project-skip:focus { transform: translateY(0); }
+.project-layout { width: min(1080px, calc(100% - 2 * clamp(20px, 4vw, 56px))); margin-inline: auto; padding: 124px 0 72px; }
+.project-heading { margin-bottom: 36px; }
+.project-heading h1 { margin: 0; max-width: 22ch; font-size: clamp(34px, 4.5vw, 58px); line-height: 1.1; font-weight: 700; letter-spacing: -.045em; }
+.project-heading > p { max-width: 66ch; margin: 18px 0 24px; color: #4d4a52; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.6; }
+.project-primary { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 54px; padding: 13px 24px; border: 1px solid var(--ink); border-radius: 12px; background: var(--ink); color: white; font-size: 17px; font-weight: 650; }
+.project-primary:hover { background: #302735; }
+.project-layout a:focus-visible,
+.project-layout button:focus-visible { outline: 3px solid #8e5cff; outline-offset: 4px; }
+.simple-project .project-overview { min-width: 0; padding: 0; border: 0; }
+.project-details { max-width: 80ch; font-size: 17px; line-height: 1.75; }
+.project-details > p { margin: 0 0 20px; }
+.project-details strong { font-weight: 650; }
+.project-overview > .demo-player + .project-details { margin-top: 32px; }
+.project-overview--portrait { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 360px); align-items: start; gap: 48px; }
+.simple-project .demo-player--portrait { width: 100%; max-width: 360px; margin-inline: auto; }
+.simple-project .demo-player--portrait .demo-screen { aspect-ratio: 9 / 16; }
+.simple-project .demo-player--portrait video { width: 100%; height: 100%; object-fit: contain; }
+.project-sources { display: flex; flex-wrap: wrap; gap: 14px 24px; }
+.project-sources a { text-decoration: underline; text-underline-offset: 4px; }
+.project-gallery { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--line); }
+.project-gallery h2 { margin: 0 0 20px; font-size: 28px; font-weight: 650; letter-spacing: -.025em; }
+.project-gallery figure { margin: 0; }
+.project-gallery [data-gallery-image] { width: 100%; height: clamp(260px, 55vw, 620px); object-fit: contain; background: #eeeced; border: 1px solid var(--line); border-radius: 14px; }
+.project-gallery figcaption { margin-top: 14px; font-size: 17px; line-height: 1.5; }
+.gallery-controls { display: flex; justify-content: space-between; gap: 12px; margin: 20px 0 16px; }
+.gallery-controls button { min-height: 48px; min-width: 124px; padding: 10px 18px; border: 1px solid #bcb7bf; border-radius: 10px; background: transparent; font-size: 16px; cursor: pointer; }
+.gallery-controls button:hover { background: white; }
+.gallery-thumbnails { display: grid; grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); gap: 12px; max-width: 640px; }
+.gallery-thumbnails button { min-width: 0; min-height: 80px; padding: 4px; border: 2px solid transparent; border-radius: 10px; background: #eeeced; cursor: pointer; }
+.gallery-thumbnails button[aria-pressed="true"] { border-color: #8e5cff; background: #f0eafa; }
+.gallery-thumbnails img { width: 100%; height: 72px; object-fit: contain; border-radius: 5px; }
+.simple-project .footer { padding: 28px 0; border-top: 1px solid var(--line); background: transparent; color: var(--ink); }
+.simple-project .footer a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.simple-project .footer-inner { min-height: 0; padding: 0; font-size: 15px; }
+@media (max-width: 760px) {
+  .project-layout { padding-top: 106px; padding-bottom: 48px; }
+  .project-heading { margin-bottom: 28px; }
+  .project-overview--portrait { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .project-details { font-size: 16px; }
+  .project-gallery { margin-top: 36px; }
+  .simple-project .footer-inner { gap: 16px; }
+}
+@media (max-width: 380px) {
+  .project-primary { width: 100%; }
+  .gallery-controls button { flex: 1; min-width: 0; padding-inline: 12px; }
+  .gallery-thumbnails { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

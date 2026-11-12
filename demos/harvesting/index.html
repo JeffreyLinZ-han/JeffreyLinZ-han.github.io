@@ -1,6 +1,53 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Berry Harvesting Robot — Interactive Model</title><link rel="stylesheet" href="../../assets/css/hq-demo.css"></head><body>
-<div class="demo-shell"><div class="viewport" id="viewport"><img class="viewer-poster" id="viewer-poster" src="../../assets/img/harvest2.webp" alt="Berry harvesting robot"><canvas class="glcanvas" id="glcanvas"></canvas><div class="viewer-busy" id="viewer-busy"></div><div class="demo-top"><button class="demo-button" id="back">← Portfolio</button><button class="demo-button" id="reset">Reset</button><button class="demo-button primary" id="demo">Showcase</button><button class="demo-button" id="full">Fullscreen</button></div><div class="viewer-brand">BM2 · Georgia Tech</div><div class="status" id="status">Ready</div><div class="error-banner" id="error"></div></div>
-<aside class="demo-panel"><div class="eyebrow">Interactive Robot Model</div><h1>Berry Harvesting Robot</h1><p>Explore the manipulator architecture developed from the project’s MuJoCo model, including the mobile platform, telescoping arm, wrist, and multi-link gripper.</p><div id="controls"></div><div class="hint">Left-drag to orbit · Right-drag to pan · Scroll to zoom</div></aside></div>
-<script src="../../assets/js/hq-webgl-viewer.js"></script><script>
-(async()=>{const err=document.getElementById('error');try{const v=new HQViewer({});await v.load('model.json');window.viewer=v;document.getElementById('back').onclick=()=>location.href='../../projects/harvesting.html';document.getElementById('reset').onclick=()=>v.reset();document.getElementById('full').onclick=()=>document.getElementById('viewport').requestFullscreen?.();const b=document.getElementById('demo');b.onclick=()=>{if(v.demoOn){v.stopDemo();b.textContent='Showcase'}else{v.startDemo();b.textContent='Stop'}};}catch(e){console.error(e);document.getElementById('viewer-busy').classList.add('hide');err.textContent='Interactive view could not start. Try refreshing the page.';err.classList.add('show');}})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenArm Harvesting — Interactive Model</title><link rel="stylesheet" href="../../assets/css/hq-demo.css"></head>
+<body>
+<div class="demo-shell">
+  <div class="viewport" id="viewport">
+    <img class="viewer-poster" id="viewer-poster" src="../../assets/img/harvesting/overview.webp" alt="OpenArm with roller grippers and a blueberry bush">
+    <canvas class="glcanvas" id="glcanvas" tabindex="0" aria-label="Harvesting robot 3D view. Drag to orbit, pinch or scroll to zoom. Arrow keys rotate; Home fits the model."></canvas>
+    <div class="viewer-busy" id="viewer-busy" aria-hidden="true"></div>
+    <div class="demo-top"><a class="demo-button" href="../../projects/harvesting.html">← Project</a><button class="demo-button" id="reset" type="button">Reset</button><button class="demo-button" id="orbit" type="button" aria-pressed="false">Orbit</button><button class="demo-button" id="full" type="button">Fullscreen</button></div>
+    <div class="status" id="status" role="status">Loading model…</div>
+    <div class="zoom-controls"><button class="demo-button" id="zoom-out" type="button" aria-label="Zoom out">−</button><button class="demo-button" id="zoom-in" type="button" aria-label="Zoom in">+</button></div>
+    <div class="error-banner" id="error" role="alert"><span id="error-message"></span><button class="demo-button" id="retry" type="button">Retry</button></div>
+  </div>
+  <aside class="demo-panel">
+    <h1 id="model-title">OpenArm harvesting</h1>
+    <p id="model-description">Explore the dual-arm assembly, roller grippers, RealSense cameras, and blueberry cluster.</p>
+    <div class="model-tabs" role="group" aria-label="Robot platform"><button class="demo-button" id="openarm-tab" type="button" aria-pressed="true">OpenArm</button><button class="demo-button" id="rrp-tab" type="button" aria-pressed="false">Original RRP</button></div>
+    <section class="panel-section" id="scene-controls"><h2>Explore the scene</h2><div class="panel-actions"><button class="demo-button" id="fit" type="button">Whole scene</button><button class="demo-button" id="robot-view" type="button">Robot</button><button class="demo-button" id="gripper-view" type="button">Grippers</button><button class="demo-button" id="berry-view" type="button">Berry cluster</button><button class="demo-button wide" id="plant-toggle" type="button" aria-pressed="true">Hide surrounding bush</button></div></section>
+    <section class="panel-section"><h2>Joint controls</h2><div id="controls"></div></section>
+    <p class="model-note">This view explores joint motion. Contact and picking are shown in the project demonstration.</p>
+    <p class="hint">Drag to orbit. Shift-drag or right-drag to pan. Pinch or scroll to zoom.</p>
+  </aside>
+</div>
+<script src="../../assets/js/hq-webgl-viewer.js"></script>
+<script>
+(() => {
+  let viewer,which=new URLSearchParams(location.search).get('model')==='rrp'?'rrp':'openarm';
+  const plant=document.getElementById('plant-toggle');
+  const resetPlant=()=>{plant.setAttribute('aria-pressed','true');plant.textContent='Hide surrounding bush';viewer?.setGroupVisible('plant',true);};
+  const load=async(selected)=>{
+    which=selected;document.getElementById('error').classList.remove('show');
+    const openarm=document.getElementById('openarm-tab'),rrp=document.getElementById('rrp-tab');
+    openarm.setAttribute('aria-pressed',String(which==='openarm'));rrp.setAttribute('aria-pressed',String(which==='rrp'));openarm.disabled=rrp.disabled=true;
+    document.getElementById('model-title').textContent=which==='openarm'?'OpenArm harvesting':'Original RRP workstation';
+    document.getElementById('model-description').textContent=which==='openarm'?'Explore the dual-arm assembly, roller grippers, RealSense cameras, and blueberry cluster.':'Explore the earlier harvesting platform, with its rotating base, telescoping arm, wrist, and roller gripper.';
+    document.getElementById('scene-controls').hidden=which==='rrp';
+    try{await viewer.load(which==='openarm'?'openarm.json':'model.json');resetPlant();const url=new URL(location.href);url.searchParams.set('model',which);history.replaceState(null,'',url);}
+    catch(error){HQDemo.error(error);}
+    finally{openarm.disabled=rrp.disabled=false;}
+  };
+  try {
+    viewer=new HQViewer({});window.viewer=viewer;HQDemo.bind(viewer,{onReset:resetPlant});
+    document.getElementById('openarm-tab').onclick=()=>load('openarm');document.getElementById('rrp-tab').onclick=()=>load('rrp');document.getElementById('retry').onclick=()=>load(which);
+    document.getElementById('robot-view').onclick=()=>viewer.fit({filter:d=>d.group==='robot'});
+    document.getElementById('berry-view').onclick=()=>viewer.fit({yaw:-.8,pitch:.3,filter:d=>d.group==='berries',padding:1.35});
+    document.getElementById('gripper-view').onclick=()=>viewer.fit({yaw:-.8,pitch:.25,filter:d=>d.focus==='gripper'||/gripper|camera|roller|finger|belt/i.test(`${d.name||''} ${viewer.manifest.nodes[d.node]?.name||''}`),padding:1.25});
+    plant.onclick=()=>{const visible=plant.getAttribute('aria-pressed')!=='true';viewer.setGroupVisible('plant',visible);plant.setAttribute('aria-pressed',String(visible));plant.textContent=visible?'Hide surrounding bush':'Show surrounding bush';};
+    load(which);
+  }catch(error){HQDemo.error(error);document.getElementById('retry').onclick=()=>location.reload();}
+})();
+</script>
+</body></html>

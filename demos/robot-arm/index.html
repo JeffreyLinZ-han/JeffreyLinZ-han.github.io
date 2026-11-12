@@ -1,6 +1,40 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Custom 6-DOF Robot Arm — Interactive Digital Twin</title><link rel="stylesheet" href="../../assets/css/hq-demo.css"></head><body>
-<div class="demo-shell"><div class="viewport" id="viewport"><img class="viewer-poster" id="viewer-poster" src="../../assets/img/arm2.webp" alt="Custom robot arm"><canvas class="glcanvas" id="glcanvas"></canvas><div class="viewer-busy" id="viewer-busy"></div><div class="demo-top"><button class="demo-button" id="back">← Portfolio</button><button class="demo-button" id="reset">Reset</button><button class="demo-button primary" id="demo">Showcase</button><button class="demo-button" id="full">Fullscreen</button></div><div class="viewer-brand">Jeffrey Lin · Robotics</div><div class="status" id="status">Ready</div><div class="error-banner" id="error"></div></div>
-<aside class="demo-panel"><div class="eyebrow">Interactive Digital Twin</div><h1>Custom 6-DOF Robot Arm</h1><p>Explore the robot’s joint motion and handwriting workflow. Drag to orbit the camera, tune individual joints, or enter text for the simulated end effector to trace.</p><div id="controls"></div><div class="writer-box"><div class="section-label">Handwriting</div><div class="writer-row"><input id="write-text" maxlength="28" value="HELLO WORLD" aria-label="Text to write"></div><div class="writer-actions"><button class="demo-button light" id="write">Write</button><button class="demo-button" id="stop-write">Stop</button><button class="demo-button" id="clear-ink">Clear</button></div><div class="writer-status" id="write-status">Ready</div></div><div class="hint">Left-drag to orbit · Right-drag to pan · Scroll to zoom</div></aside></div>
-<script src="../../assets/js/hq-webgl-viewer.js"></script><script src="../../assets/js/robot-writer.js"></script><script>
-(async()=>{const err=document.getElementById('error');try{const v=new HQViewer({});await v.load('model.json');window.viewer=v;new RobotWriterWeb(v);document.getElementById('back').onclick=()=>location.href='../../projects/robot-arm.html';document.getElementById('reset').onclick=()=>v.reset();document.getElementById('full').onclick=()=>document.getElementById('viewport').requestFullscreen?.();const b=document.getElementById('demo');b.onclick=()=>{if(v.demoOn){v.stopDemo();b.textContent='Showcase'}else{v.startDemo();b.textContent='Stop'}};}catch(e){console.error(e);document.getElementById('viewer-busy').classList.add('hide');err.textContent='Interactive view could not start. Try refreshing the page.';err.classList.add('show');}})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>W-D1 Robot Arm — Interactive Model</title><link rel="stylesheet" href="../../assets/css/hq-demo.css"></head>
+<body>
+<div class="demo-shell">
+  <div class="viewport" id="viewport">
+    <img class="viewer-poster" id="viewer-poster" src="../../assets/img/arm2.webp" alt="W-D1 robot arm">
+    <canvas class="glcanvas" id="glcanvas" tabindex="0" aria-label="W-D1 robot 3D view. Drag to orbit, pinch or scroll to zoom. Arrow keys rotate; Home fits the model."></canvas>
+    <div class="viewer-busy" id="viewer-busy" aria-hidden="true"></div>
+    <div class="demo-top"><a class="demo-button" href="../../projects/robot-arm.html">← Project</a><button class="demo-button" id="reset" type="button">Reset</button><button class="demo-button" id="orbit" type="button" aria-pressed="false">Orbit</button><button class="demo-button" id="full" type="button">Fullscreen</button></div>
+    <div class="status" id="status" role="status">Loading model…</div>
+    <div class="zoom-controls"><button class="demo-button" id="zoom-out" type="button" aria-label="Zoom out">−</button><button class="demo-button" id="zoom-in" type="button" aria-label="Zoom in">+</button></div>
+    <div class="error-banner" id="error" role="alert"><span id="error-message"></span><button class="demo-button" id="retry" type="button">Retry</button></div>
+  </div>
+  <aside class="demo-panel">
+    <h1>W-D1 robot arm</h1>
+    <p>Move the joints, explore the assembly, or ask the arm to trace a line of text.</p>
+    <div class="panel-actions"><button class="demo-button primary" id="demo" type="button" aria-pressed="false">Motion demo</button><button class="demo-button" id="fit" type="button">Fit model</button></div>
+    <section class="panel-section"><h2>Joint controls</h2><div id="controls"></div></section>
+    <section class="writer-box"><h2>Handwriting</h2><div class="writer-row"><input id="write-text" maxlength="28" value="HELLO WORLD" aria-label="Text for the robot to write"></div><div class="writer-actions"><button class="demo-button light" id="write" type="button">Write</button><button class="demo-button" id="stop-write" type="button">Stop</button><button class="demo-button" id="clear-ink" type="button">Clear</button></div><div class="writer-status" id="write-status" role="status">Ready</div></section>
+    <p class="hint">Drag to orbit. Shift-drag or right-drag to pan. Pinch or scroll to zoom.</p>
+  </aside>
+</div>
+<script src="../../assets/js/hq-webgl-viewer.js"></script><script src="../../assets/js/robot-writer.js"></script>
+<script>
+(() => {
+  let viewer,writer;
+  const demo=document.getElementById('demo');
+  const stop=()=>{writer?.stop();demo.textContent='Motion demo';demo.setAttribute('aria-pressed','false');};
+  const load=async()=>{document.getElementById('error').classList.remove('show');try{await viewer.load('model.json');writer=new RobotWriterWeb(viewer);}catch(error){HQDemo.error(error);}};
+  try {
+    viewer=new HQViewer({});window.viewer=viewer;HQDemo.bind(viewer,{onReset:stop});
+    demo.onclick=()=>{writer?.stop();if(viewer.demoOn){viewer.stopDemo();stop();}else{viewer.startDemo();demo.textContent='Stop motion';demo.setAttribute('aria-pressed','true');}};
+    document.getElementById('controls').addEventListener('input',stop);
+    document.getElementById('write').addEventListener('click',()=>{demo.textContent='Motion demo';demo.setAttribute('aria-pressed','false');});
+    document.getElementById('retry').onclick=load;load();
+  }catch(error){HQDemo.error(error);document.getElementById('retry').onclick=()=>location.reload();}
+})();
+</script>
+</body></html>

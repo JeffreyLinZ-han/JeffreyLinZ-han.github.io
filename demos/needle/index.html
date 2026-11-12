@@ -1,6 +1,44 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MRI-Compatible Needle Robot — Interactive CAD</title><link rel="stylesheet" href="../../assets/css/hq-demo.css"></head><body>
-<div class="demo-shell"><div class="viewport" id="viewport"><img class="viewer-poster" id="viewer-poster" src="../../assets/img/needle1.webp" alt="MRI-compatible needle robot CAD"><canvas class="glcanvas" id="glcanvas"></canvas><div class="viewer-busy" id="viewer-busy"></div><div class="demo-top"><button class="demo-button" id="back">← Portfolio</button><button class="demo-button" id="reset">Reset view</button><button class="demo-button" id="full">Fullscreen</button></div><div class="viewer-brand">Medical Robotics</div><div class="status" id="status">Ready</div><div class="error-banner" id="error"></div></div>
-<aside class="demo-panel"><div class="eyebrow">Interactive CAD</div><h1>MRI-Compatible Needle Intervention Platform</h1><p>Inspect the complete platform or focus on the actuator assembly. Inspect the complete platform or focus on the actuator assembly.</p><div class="model-tabs"><a class="demo-button light" id="full-tab" href="?view=full">Full assembly</a><a class="demo-button light" id="act-tab" href="?view=actuator">Actuator</a></div><div class="hint">Left-drag to orbit · Right-drag to pan · Scroll to zoom</div></aside></div>
-<script src="../../assets/js/hq-webgl-viewer.js"></script><script>
-(async()=>{const err=document.getElementById('error');try{const params=new URLSearchParams(location.search);const which=params.get('view')==='actuator'?'actuator':'full';document.getElementById(which==='full'?'full-tab':'act-tab').classList.add('active');const v=new HQViewer({controls:null});window.viewer=v;await v.load(`models/${which}-fresh.json`);document.getElementById('back').onclick=()=>location.href='../../projects/needle.html';document.getElementById('reset').onclick=()=>v.reset();document.getElementById('full').onclick=()=>document.getElementById('viewport').requestFullscreen?.();}catch(e){console.error(e);document.getElementById('viewer-busy').classList.add('hide');err.textContent='Interactive view could not start. Try refreshing the page.';err.classList.add('show');}})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Needle Platform — Interactive Model</title><link rel="stylesheet" href="../../assets/css/hq-demo.css"></head>
+<body>
+<div class="demo-shell">
+  <div class="viewport" id="viewport">
+    <img class="viewer-poster" id="viewer-poster" src="../../assets/img/needle1.webp" alt="Needle intervention platform CAD">
+    <canvas class="glcanvas" id="glcanvas" tabindex="0" aria-label="Needle platform 3D view. Drag to orbit, pinch or scroll to zoom. Arrow keys rotate; Home fits the model."></canvas>
+    <div class="viewer-busy" id="viewer-busy" aria-hidden="true"></div>
+    <div class="demo-top"><a class="demo-button" href="../../projects/needle.html">← Project</a><button class="demo-button" id="reset" type="button">Reset view</button><button class="demo-button" id="orbit" type="button" aria-pressed="false">Orbit</button><button class="demo-button" id="full" type="button">Fullscreen</button></div>
+    <div class="status" id="status" role="status">Loading model…</div>
+    <div class="zoom-controls"><button class="demo-button" id="zoom-out" type="button" aria-label="Zoom out">−</button><button class="demo-button" id="zoom-in" type="button" aria-label="Zoom in">+</button></div>
+    <div class="error-banner" id="error" role="alert"><span id="error-message"></span><button class="demo-button" id="retry" type="button">Retry</button></div>
+  </div>
+  <aside class="demo-panel">
+    <h1>Needle intervention platform</h1>
+    <p>Explore the complete assembly or the actuator on its own. Each view centers on the selected model.</p>
+    <div class="model-tabs" role="group" aria-label="Assembly"><button class="demo-button" id="full-tab" type="button" aria-pressed="true">Full assembly</button><button class="demo-button" id="act-tab" type="button" aria-pressed="false">Actuator</button></div>
+    <section class="panel-section"><h2>Camera</h2><div class="panel-actions"><button class="demo-button" id="perspective" type="button">Perspective</button><button class="demo-button" id="front" type="button">Front</button><button class="demo-button" id="side" type="button">Side</button><button class="demo-button" id="top" type="button">Top</button></div></section>
+    <p class="hint">Drag to orbit. Shift-drag or right-drag to pan. Pinch or scroll to zoom.</p>
+  </aside>
+</div>
+<script src="../../assets/js/hq-webgl-viewer.js"></script>
+<script>
+(() => {
+  let viewer,which=new URLSearchParams(location.search).get('view')==='actuator'?'actuator':'full';
+  const load=async(selected)=>{
+    which=selected;document.getElementById('error').classList.remove('show');
+    const full=document.getElementById('full-tab'),act=document.getElementById('act-tab');
+    full.setAttribute('aria-pressed',String(which==='full'));act.setAttribute('aria-pressed',String(which==='actuator'));
+    full.disabled=act.disabled=true;
+    try { await viewer.load(`models/${which}-fresh.json`);const url=new URL(location.href);url.searchParams.set('view',which);history.replaceState(null,'',url); }
+    catch(error){ HQDemo.error(error); }
+    finally { full.disabled=act.disabled=false; }
+  };
+  try {
+    viewer=new HQViewer({controls:null});window.viewer=viewer;HQDemo.bind(viewer);
+    document.getElementById('full-tab').onclick=()=>load('full');document.getElementById('act-tab').onclick=()=>load('actuator');document.getElementById('retry').onclick=()=>load(which);
+    for(const [id,yaw,pitch] of [['perspective',null,null],['front',-Math.PI/2,.06],['side',0,.06],['top',-Math.PI/2,1.45]])document.getElementById(id).onclick=()=>{if(!viewer.manifest)return;viewer.setOrbit(false);viewer.fit({yaw:yaw??viewer.manifest.camera.yaw,pitch:pitch??viewer.manifest.camera.pitch});};
+    load(which);
+  } catch(error){HQDemo.error(error);document.getElementById('retry').onclick=()=>location.reload();}
+})();
+</script>
+</body></html>
