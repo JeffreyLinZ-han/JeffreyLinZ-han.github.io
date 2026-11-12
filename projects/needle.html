@@ -7,9 +7,9 @@
   <meta name="theme-color" content="#f7f5f4">
   <title>MRI needle intervention | Jeffrey Lin</title>
   <link rel="stylesheet" href="../assets/css/site.css">
-  <link rel="stylesheet" href="../assets/css/demo-player.css">
-  <link rel="stylesheet" href="../assets/css/project.css">
-  <script defer src="../assets/js/demo-player.js"></script>
+  <link rel="stylesheet" href="../assets/css/demo-player.css?v=5427d109d57b">
+  <link rel="stylesheet" href="../assets/css/project.css?v=a322aeb88a3c">
+  <script defer src="../assets/js/demo-player.js?v=14bd1ada8ca7"></script>
   <script defer src="../assets/js/gallery.js"></script>
 </head>
 <body class="project-page simple-project">
@@ -20,7 +20,7 @@
       <div class="nav-links" id="nav-links">
         <a href="../index.html#work">Projects</a>
         <a href="../index.html#contact">Contact</a>
-        <a href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noopener noreferrer">R&eacute;sum&eacute;</a>
+        <a href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf?v=53daffc5daa4" target="_blank" rel="noopener noreferrer">R&eacute;sum&eacute;</a>
       </div>
       <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
     </div>
@@ -29,30 +29,36 @@
     <header class="project-heading">
       <h1>MRI needle intervention</h1>
       <p>A compact needle-positioning mechanism designed for image-guided intervention research.</p>
-      <a class="project-primary" href="../demos/needle/">Interactive twin <span aria-hidden="true">&rarr;</span></a>
+      <div class="project-actions">
+        <a class="project-primary" href="../demos/needle/">Interactive twin <span aria-hidden="true">&rarr;</span></a>
+        <a class="project-home" href="../index.html">Back to homepage</a>
+      </div>
     </header>
       <section class="project-details" aria-label="Project details">
-        <p><strong>Used.</strong> SolidWorks and rapid prototyping to study a modular positioning mechanism and its actuator geometry.</p>
-        <p><strong>Built.</strong> My mechanical work includes actuator linkages, pivot constraints, ball-joint interfaces, worm-drive concepts, and a removable needle-insertion module. I also reverse-engineered earlier pneumatic actuator concepts. The layout accounts for patient access, MRI bore clearance, receive coils, and the needle path.</p>
-        <p><strong>Status.</strong> This is a mechanical research prototype. Clinical use and MR safety classification have not been validated. The interactive model shows the complete assembly and the isolated actuator subsystem.</p>
+        <p>In Georgia Tech's BioMedical Mechatronics Lab, I worked on a compact, modular mechanism for image-guided needle positioning. The design has to account for the patient, the needle path, the MRI bore, and receive-coil clearance while leaving space to assemble and service the mechanism.</p>
+        <p>I use SolidWorks to develop the positioning geometry and examine how actuator motion changes the needle orientation. The mechanical work includes actuator linkages, pivot constraints, ball-joint interfaces, worm-drive concepts, and a removable needle-insertion module. Separating these modules makes it possible to revise one mechanism without rebuilding the complete platform.</p>
+        <p>I reconstructed an earlier pneumatic actuator from hardware and STEP geometry before revising the surrounding structure. I iterated the ball-joint layout, pivot locations, and tilt range to examine the available workspace. Rapid prototypes connect the CAD layout to real interfaces, fasteners, and assembly access. The hardware photo below shows a transparent-cylinder actuator with guide rods and ball-joint components.</p>
+        <p>This work combines mechanism design, CAD assembly, dimensional inspection, and rapid prototyping. The interactive twin provides the complete assembly and an isolated actuator view so the relationships between the parts can be inspected.</p>
+        <p>The current device is a mechanical research prototype. The work focuses on mechanical feasibility, packaging, and assembly, using CAD revisions and physical parts to examine how the mechanism fits together.</p>
       </section>
     <section class="project-gallery" data-gallery aria-label="MRI needle intervention images">
       <h2>Gallery</h2>
       <figure>
-        <img data-gallery-image src="../assets/img/needle1.webp" alt="CAD model of the complete needle-positioning platform" loading="lazy">
-        <figcaption data-gallery-caption>Needle-positioning assembly</figcaption>
+        <img data-gallery-image src="../assets/img/needle-actuator-prototype.webp" alt="Physical transparent-cylinder pneumatic actuator, guide rods, ball-joint parts and caliper on a table" loading="lazy">
+        <figcaption data-gallery-caption>Pneumatic actuator hardware and joint components</figcaption>
       </figure>
       <div class="gallery-controls">
         <button type="button" data-gallery-prev aria-label="Previous image">&larr; Previous</button>
         <button type="button" data-gallery-next aria-label="Next image">Next &rarr;</button>
       </div>
       <div class="gallery-thumbnails" role="group" aria-label="Choose image">
-        <button type="button" data-gallery-src="../assets/img/needle1.webp" data-gallery-alt="CAD model of the complete needle-positioning platform" data-gallery-caption="Needle-positioning assembly" aria-pressed="true"><img src="../assets/img/needle1.webp" alt="CAD model of the complete needle-positioning platform" loading="lazy"></button>
+        <button type="button" data-gallery-src="../assets/img/needle-actuator-prototype.webp" data-gallery-alt="Physical transparent-cylinder pneumatic actuator, guide rods, ball-joint parts and caliper on a table" data-gallery-caption="Pneumatic actuator hardware and joint components" aria-pressed="true"><img src="../assets/img/needle-actuator-prototype.webp" alt="Physical transparent-cylinder pneumatic actuator, guide rods, ball-joint parts and caliper on a table" loading="lazy"></button>
+        <button type="button" data-gallery-src="../assets/img/needle1.webp" data-gallery-alt="CAD model of the complete needle-positioning platform" data-gallery-caption="Needle-positioning assembly" aria-pressed="false"><img src="../assets/img/needle1.webp" alt="CAD model of the complete needle-positioning platform" loading="lazy"></button>
         <button type="button" data-gallery-src="../assets/img/needle2.webp" data-gallery-alt="CAD model of the actuator subsystem" data-gallery-caption="Actuator subsystem" aria-pressed="false"><img src="../assets/img/needle2.webp" alt="CAD model of the actuator subsystem" loading="lazy"></button>
       </div>
     </section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>&copy; 2026 Jeffrey (Zihan) Lin</span><a href="../index.html#work">All projects</a></div></footer>
-  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/site.js?v=ca7f8e9eee5e"></script>
 </body>
 </html>

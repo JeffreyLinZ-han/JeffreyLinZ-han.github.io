@@ -7,54 +7,61 @@
   <meta name="theme-color" content="#f7f5f4">
   <title>Jeffrey (Zihan) Lin — Robotics</title>
   <link rel="stylesheet" href="assets/css/site.css">
-  <link rel="stylesheet" href="assets/css/home.css">
-  <link rel="stylesheet" href="assets/css/demo-player.css">
+  <link rel="stylesheet" href="assets/css/home.css?v=3fb31ef6b820">
+  <link rel="stylesheet" href="assets/css/demo-player.css?v=5427d109d57b">
   <link rel="preload" as="image" href="assets/img/harvesting/harvest-sequence.webp">
-  <script src="assets/js/demo-player.js" defer></script>
+  <script src="assets/js/demo-player.js?v=14bd1ada8ca7" defer></script>
 </head>
 <body class="portfolio-home">
   <a class="skip-link" href="#main">Skip to content</a>
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="wrap nav-inner">
       <a class="brand" href="#main">Jeffrey (Zihan) Lin</a>
-      <div class="nav-links" id="nav-links"><a href="#work">Projects</a><a href="#profile">About</a><a href="#contact">Contact</a><a class="nav-cta" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a></div>
+      <div class="nav-links" id="nav-links"><a href="#work">Projects</a><a href="#profile">About</a><a href="#contact">Contact</a><a class="nav-cta" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf?v=53daffc5daa4" target="_blank" rel="noreferrer">Résumé ↗</a></div>
       <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
     </div>
   </nav>
   <main id="main">
     <section class="portfolio-hero wrap">
-      <div class="portfolio-intro">
+      <div class="portfolio-intro" data-reveal>
         <h1>Jeffrey<br> (Zihan) Lin</h1>
         <p class="portfolio-role">Robotics &amp; mechatronics</p>
         <p>I work on robot mechanisms, embedded control, and simulation. My projects include a custom desktop arm, blueberry harvesting, and an MRI-compatible needle-positioning system.</p>
-        <div class="portfolio-actions"><a class="button dark" href="#work">View projects</a><a class="button" href="mailto:zlin439@gatech.edu">Email me</a></div>
+        <div class="portfolio-actions"><a class="button dark" href="#work">View projects <span class="arrow" aria-hidden="true">↓</span></a><a class="button" href="mailto:zlin439@gatech.edu">Email me <span class="arrow" aria-hidden="true">↗</span></a></div>
       </div>
-      <section class="demo-showcase" data-demo-player aria-label="Project demonstrations">
-        <div class="demo-projects" role="group" aria-label="Choose a demonstration">
-          <button type="button" data-demo-src="assets/video/harvesting/harvest-sequence.mp4" data-demo-poster="assets/img/harvesting/harvest-sequence.webp" data-demo-name="OpenArm blueberry harvesting" data-demo-href="projects/harvesting.html" aria-pressed="true">OpenArm harvesting</button>
-          <button type="button" data-demo-src="assets/img/wd1-demo.mp4" data-demo-poster="assets/img/wd1-profile-clean.webp" data-demo-name="W-D1 desktop robotic arm" data-demo-href="projects/robot-arm.html" aria-pressed="false">W-D1 desktop arm</button>
-        </div>
+      <section class="demo-showcase" data-demo-player data-reveal aria-label="OpenArm blueberry harvesting demonstration">
         <div class="demo-stage">
-          <div class="demo-screen"><video muted playsinline loop preload="none" controls poster="assets/img/harvesting/harvest-sequence.webp" aria-label="OpenArm blueberry harvesting"><source src="assets/video/harvesting/harvest-sequence.mp4" type="video/mp4"></video></div>
-          <div class="demo-controls"><button type="button" data-demo-toggle hidden>Play</button></div>
+          <div class="demo-screen"><video muted autoplay loop playsinline preload="metadata" poster="assets/img/harvesting/harvest-sequence.webp" aria-label="OpenArm blueberry harvesting"><source src="assets/video/harvesting/harvest-sequence.mp4" type="video/mp4"></video></div>
         </div>
         <p data-demo-status role="status"></p>
         <a class="demo-project-link" data-demo-project-link href="projects/harvesting.html">Project details →</a>
       </section>
     </section>
 
+    <section class="portfolio-build" data-home-parallax aria-labelledby="practice-title">
+      <img class="portfolio-build-image" src="assets/img/wd1-bench.webp" alt="Overhead view of the W-D1 arm, belt drives, controller boards, and laptop on the workbench" loading="lazy" width="1536" height="1152">
+      <div class="wrap portfolio-build-content">
+        <div class="portfolio-build-copy" data-reveal>
+          <h2 id="practice-title">Engineering practice</h2>
+          <p>For W-D1, I designed and assembled the joints and belt drives, integrated STM32 control and encoder feedback, and built the matching MuJoCo model.</p>
+          <p>My work in the lab extends that process to harvesting mechanisms and an MRI-compatible needle-positioning platform.</p>
+          <a class="button light" href="projects/robot-arm.html">Explore W-D1 <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
     <section class="portfolio-section wrap" id="work">
-      <h2>Projects</h2>
+      <h2 data-reveal>Projects</h2>
       <div class="portfolio-projects">
-        <article class="portfolio-project">
+        <article class="portfolio-project" data-reveal data-tilt>
           <a class="portfolio-project-image" href="projects/harvesting.html"><img src="assets/img/harvesting/gripper.webp" alt="OpenArm roller gripper and RealSense camera" loading="lazy"></a>
           <div class="portfolio-project-copy"><h3>OpenArm berry harvesting</h3><p>Robot and gripper integration in MuJoCo and Newton, with elastic belts, fruit detachment, and a scripted picking sequence.</p><div class="project-links"><a href="projects/harvesting.html">Project details →</a><a href="demos/harvesting/">Interactive twin ↗</a></div></div>
         </article>
-        <article class="portfolio-project">
+        <article class="portfolio-project" data-reveal data-tilt>
           <a class="portfolio-project-image" href="projects/robot-arm.html"><img src="assets/img/wd1-profile-clean.webp" alt="W-D1 custom desktop robotic arm" loading="lazy"></a>
           <div class="portfolio-project-copy"><h3>W-D1 desktop arm</h3><p>A six-axis arm with custom mechanical parts, belt drives, STM32 control, joint sensing, and a MuJoCo model.</p><div class="project-links"><a href="projects/robot-arm.html">Project details →</a><a href="demos/robot-arm/">Interactive twin ↗</a></div></div>
         </article>
-        <article class="portfolio-project">
+        <article class="portfolio-project" data-reveal data-tilt>
           <a class="portfolio-project-image" href="projects/needle.html"><img src="assets/img/needle1.webp" alt="MRI-compatible needle positioning platform CAD" loading="lazy"></a>
           <div class="portfolio-project-copy"><h3>MRI needle robot</h3><p>Mechanical design for compact needle positioning, with modular actuators and an independently removable insertion assembly.</p><div class="project-links"><a href="projects/needle.html">Project details →</a><a href="demos/needle/">Interactive model ↗</a></div></div>
         </article>
@@ -62,18 +69,18 @@
     </section>
 
     <section class="portfolio-section wrap portfolio-about" id="profile">
-      <div><h2>About</h2><img class="portfolio-portrait" src="assets/img/profile.webp" alt="Jeffrey Zihan Lin" loading="lazy"></div>
-      <div class="portfolio-about-copy">
+      <div data-reveal><h2>About</h2><img class="portfolio-portrait" src="assets/img/profile.webp" alt="Jeffrey Zihan Lin" loading="lazy"></div>
+      <div class="portfolio-about-copy" data-reveal>
         <p>I study Biomedical Engineering at Georgia Tech with a Robotics Minor. My work combines mechanical design, embedded systems, and simulation, with an interest in robotic manipulation and medical robotics.</p>
         <h3>Research</h3><p>At Georgia Tech’s BioMedical Mechatronics Lab, I work on harvesting-robot simulation and mechanical design for an MRI-compatible needle intervention platform.</p>
         <h3>Education</h3><ul><li>Georgia Institute of Technology — B.S. Biomedical Engineering, Robotics Minor, 2026–2028</li><li>University of Florida — Biomedical Engineering, 2024–2025</li></ul>
         <h3>Tools</h3><p>Python, C, MATLAB, STM32, SolidWorks, ROS 2, MuJoCo, Newton, and URDF/MJCF.</p>
-        <a class="button" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noreferrer">Open résumé ↗</a>
+        <a class="button" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf?v=53daffc5daa4" target="_blank" rel="noreferrer">Open résumé ↗</a>
       </div>
     </section>
     <section class="portfolio-section portfolio-contact" id="contact"><div class="wrap"><h2>Contact</h2><div class="portfolio-actions"><a class="button" href="mailto:zlin439@gatech.edu">zlin439@gatech.edu</a><a class="button" href="https://github.com/JeffreyLinZ-han" target="_blank" rel="noreferrer">GitHub ↗</a><a class="button" href="https://www.linkedin.com/in/zzzzzihan-lin/en" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div></section>
   </main>
   <footer class="portfolio-footer wrap">© 2026 Jeffrey (Zihan) Lin</footer>
-  <script src="assets/js/site.js"></script>
+  <script src="assets/js/site.js?v=ca7f8e9eee5e"></script>
 </body>
 </html>

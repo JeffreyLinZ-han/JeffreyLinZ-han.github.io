@@ -7,9 +7,9 @@
   <meta name="theme-color" content="#f7f5f4">
   <title>OpenArm berry harvesting | Jeffrey Lin</title>
   <link rel="stylesheet" href="../assets/css/site.css">
-  <link rel="stylesheet" href="../assets/css/demo-player.css">
-  <link rel="stylesheet" href="../assets/css/project.css">
-  <script defer src="../assets/js/demo-player.js"></script>
+  <link rel="stylesheet" href="../assets/css/demo-player.css?v=5427d109d57b">
+  <link rel="stylesheet" href="../assets/css/project.css?v=a322aeb88a3c">
+  <script defer src="../assets/js/demo-player.js?v=14bd1ada8ca7"></script>
   <script defer src="../assets/js/gallery.js"></script>
 </head>
 <body class="project-page simple-project">
@@ -20,7 +20,7 @@
       <div class="nav-links" id="nav-links">
         <a href="../index.html#work">Projects</a>
         <a href="../index.html#contact">Contact</a>
-        <a href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf" target="_blank" rel="noopener noreferrer">R&eacute;sum&eacute;</a>
+        <a href="../assets/resume/Jeffrey_Zihan_Lin_Resume.pdf?v=53daffc5daa4" target="_blank" rel="noopener noreferrer">R&eacute;sum&eacute;</a>
       </div>
       <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
     </div>
@@ -29,40 +29,47 @@
     <header class="project-heading">
       <h1>OpenArm berry harvesting</h1>
       <p>A simulation of an OpenArm robot using roller grippers to contact, detach, and collect berries.</p>
-      <a class="project-primary" href="../demos/harvesting/">Interactive twin <span aria-hidden="true">&rarr;</span></a>
+      <div class="project-actions">
+        <a class="project-primary" href="../demos/harvesting/">Interactive twin <span aria-hidden="true">&rarr;</span></a>
+        <a class="project-home" href="../index.html">Back to homepage</a>
+      </div>
     </header>
     <div class="project-overview">
       <section class="demo-player" data-demo-player aria-label="OpenArm berry harvesting sequence">
-        <div class="demo-screen"><video muted playsinline loop preload="none" controls poster="../assets/img/harvesting/harvest-sequence.webp" aria-label="OpenArm berry harvesting sequence"><source src="../assets/video/harvesting/harvest-sequence.mp4" type="video/mp4"></video></div>
-        <div class="demo-controls"><button type="button" data-demo-toggle hidden>Play</button></div>
+        <div class="demo-screen"><video autoplay muted loop playsinline preload="none" poster="../assets/img/harvesting/harvest-sequence.webp" aria-label="OpenArm berry harvesting sequence"><source src="../assets/video/harvesting/harvest-sequence.mp4" type="video/mp4"></video></div>
         <p data-demo-status role="status"></p>
       </section>
       <section class="project-details" aria-label="Project details">
-        <p><strong>Used.</strong> The existing OpenArm platform, the original RRP robot's roller grippers, and RealSense D435 camera assemblies. The model uses MJCF/URDF, elastic belt segments, flexible stems, and a load-and-fatigue attachment model.</p>
-        <p><strong>Built.</strong> I aligned the CAD and joint frames, integrated the grippers on both wrists, and implemented contact, detachment, and recorded simulation playback. MuJoCo runs the demonstration; an optional Newton backend uses converted scene assets. The project also retains the earlier RRP workstation.</p>
-        <p><strong>Status.</strong> This preset collects 2 of 3 ripe berries while all 5 unripe berries remain attached. The eight-fruit cluster carries the physical interactions; the surrounding bush is visual context. Motion is scripted. Camera-based recognition and a picking policy remain future work.</p>
+        <p>This project began with an existing revolute&ndash;revolute&ndash;prismatic harvesting robot. I processed more than 100 exported STL components, rebuilt the articulated hierarchy, and corrected mesh origins and joint frames for simulation. The earlier workflow also connected the URDF model to ROS 2, ros2_control, and MoveIt 2 motion planning. The field photos below show the original mobile platform and fruit clusters with mixed ripeness and leaf occlusion.</p>
+        <p>I then integrated the original roller gripper with the existing OpenArm platform. The work carried the CAD assemblies into MJCF and URDF, mounted grippers on both wrists, and kept the RealSense D435 housing, bracket, and optical frames aligned with each end effector. My contribution is the robot integration and simulation, building on those existing hardware designs.</p>
+        <p>To model picking contact, I used segmented elastic belts around the rollers, flexible stems, and a load-and-fatigue attachment model from the supplied blueberry simulation. The belts can contact and transport fruit; attachment forces, bending, torsion, and accumulated damage determine when a berry releases. Force logging records attachment loads and a contact-based squeeze estimate.</p>
+        <p>The demonstrated sequence approaches and closes on the cluster, holds the arm command fixed while the rollers run, then opens and withdraws for collection. MuJoCo runs this video. Recorded simulation states allow the same physical trial to be viewed from several cameras. An optional Newton backend loads converted USD assets.</p>
+        <p>In this preset, 2 of 3 ripe berries are collected and all 5 unripe berries remain attached. These are results from one prescribed sequence. The eight-fruit target cluster carries the contact and detachment physics; the surrounding bush provides visual context. Ripeness affects the physical attachment parameters, rather than triggering a commanded release.</p>
+        <p>The current camera assembly is part of the model, but camera-based fruit recognition and a picking policy are not yet implemented. Future control work will choose gripping force, roller direction, and speed from the changing contact state. The earlier RRP model remains available in the same interactive twin.</p>
         <p class="project-sources"><a href="https://github.com/JeffreyLinZ-han/Blue_Berry_Harvesting_Bot" target="_blank" rel="noopener noreferrer">Source code</a><a href="https://github.com/JeffreyLinZ-han/Blue_Berry_Harvesting_Bot/tree/Zihan/harvesting-workstation" target="_blank" rel="noopener noreferrer">Earlier RRP source</a></p>
       </section>
     </div>
     <section class="project-gallery" data-gallery aria-label="OpenArm berry harvesting images">
       <h2>Gallery</h2>
       <figure>
-        <img data-gallery-image src="../assets/img/harvesting/gripper.webp" alt="OpenArm roller gripper with its upright RealSense camera" loading="lazy">
-        <figcaption data-gallery-caption>OpenArm gripper and camera</figcaption>
+        <img data-gallery-image src="../assets/img/harvesting/rrp-field-platform.webp" alt="Original mobile RRP harvesting platform with its arm and collection bag among blueberry rows" loading="lazy">
+        <figcaption data-gallery-caption>Original RRP platform in the field</figcaption>
       </figure>
       <div class="gallery-controls">
         <button type="button" data-gallery-prev aria-label="Previous image">&larr; Previous</button>
         <button type="button" data-gallery-next aria-label="Next image">Next &rarr;</button>
       </div>
       <div class="gallery-thumbnails" role="group" aria-label="Choose image">
-        <button type="button" data-gallery-src="../assets/img/harvesting/gripper.webp" data-gallery-alt="OpenArm roller gripper with its upright RealSense camera" data-gallery-caption="OpenArm gripper and camera" aria-pressed="true"><img src="../assets/img/harvesting/gripper.webp" alt="OpenArm roller gripper with its upright RealSense camera" loading="lazy"></button>
+        <button type="button" data-gallery-src="../assets/img/harvesting/rrp-field-platform.webp" data-gallery-alt="Original mobile RRP harvesting platform with its arm and collection bag among blueberry rows" data-gallery-caption="Original RRP platform in the field" aria-pressed="true"><img src="../assets/img/harvesting/rrp-field-platform.webp" alt="Original mobile RRP harvesting platform with its arm and collection bag among blueberry rows" loading="lazy"></button>
+        <button type="button" data-gallery-src="../assets/img/harvesting/gripper.webp" data-gallery-alt="OpenArm roller gripper with its upright RealSense camera" data-gallery-caption="OpenArm gripper and camera" aria-pressed="false"><img src="../assets/img/harvesting/gripper.webp" alt="OpenArm roller gripper with its upright RealSense camera" loading="lazy"></button>
         <button type="button" data-gallery-src="../assets/img/harvesting/contact.webp" data-gallery-alt="Elastic belts contacting berries above the collection tray" data-gallery-caption="Belt contact and collection tray" aria-pressed="false"><img src="../assets/img/harvesting/contact.webp" alt="Elastic belts contacting berries above the collection tray" loading="lazy"></button>
         <button type="button" data-gallery-src="../assets/img/harvesting/overview.webp" data-gallery-alt="OpenArm robot beside the complete berry bush" data-gallery-caption="Robot and berry bush" aria-pressed="false"><img src="../assets/img/harvesting/overview.webp" alt="OpenArm robot beside the complete berry bush" loading="lazy"></button>
         <button type="button" data-gallery-src="../assets/img/harvest2.webp" data-gallery-alt="Earlier RRP harvesting workstation in a neutral simulated pose" data-gallery-caption="Earlier RRP workstation" aria-pressed="false"><img src="../assets/img/harvest2.webp" alt="Earlier RRP harvesting workstation in a neutral simulated pose" loading="lazy"></button>
+        <button type="button" data-gallery-src="../assets/img/harvesting/field-berry-clusters.webp" data-gallery-alt="Ripe and unripe blueberries among leaves on a real bush" data-gallery-caption="Mixed-ripeness fruit and leaf occlusion" aria-pressed="false"><img src="../assets/img/harvesting/field-berry-clusters.webp" alt="Ripe and unripe blueberries among leaves on a real bush" loading="lazy"></button>
       </div>
     </section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>&copy; 2026 Jeffrey (Zihan) Lin</span><a href="../index.html#work">All projects</a></div></footer>
-  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/site.js?v=ca7f8e9eee5e"></script>
 </body>
 </html>

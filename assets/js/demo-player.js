@@ -1,94 +1,58 @@
 (() => {
-  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
-
   document.querySelectorAll('[data-demo-player]').forEach(player => {
     const video = player.querySelector('video');
-    const toggle = player.querySelector('[data-demo-toggle]');
     const status = player.querySelector('[data-demo-status]');
-    const choices = [...player.querySelectorAll('[data-demo-src]')];
-    const projectLink = player.querySelector('[data-demo-project-link]');
-    if (!video || !toggle) return;
-
+    if (!video) return;
     let visible = false;
-    let wantsPlayback = !motionPreference.matches && !navigator.connection?.saveData;
     let failed = false;
     let request = 0;
-
     video.controls = false;
     video.muted = true;
+    video.defaultMuted = true;
     video.loop = true;
-    video.src = choices[0]?.dataset.demoSrc || video.getAttribute('src') || video.querySelector('source')?.src;
-    toggle.hidden = false;
+    video.playsInline = true;
+    video.src = video.getAttribute('src') || video.querySelector('source')?.src;
 
-    const updateButton = () => {
-      toggle.textContent = video.paused ? 'Play' : 'Pause';
-      toggle.setAttribute('aria-label', video.paused ? 'Play demonstration' : 'Pause demonstration');
-    };
     const syncPlayback = async () => {
       const currentRequest = ++request;
-      if (!wantsPlayback || !visible || document.hidden || failed) {
+      if (!visible || document.hidden || failed) {
         video.pause();
-        updateButton();
         return;
       }
       try {
         await video.play();
-        if (currentRequest !== request && (!wantsPlayback || !visible || document.hidden)) video.pause();
-      } catch (error) {
-        if (currentRequest !== request || error.name === 'AbortError') return;
-        wantsPlayback = false;
-        if (error.name !== 'NotAllowedError' && status) status.textContent = 'Video unavailable. Press Play to retry.';
-      }
-      updateButton();
-    };
-
-    choices.forEach(choice => choice.addEventListener('click', () => {
-      ++request;
-      failed = false;
-      video.pause();
-      choices.forEach(button => button.setAttribute('aria-pressed', String(button === choice)));
-      video.poster = choice.dataset.demoPoster;
-      video.src = choice.dataset.demoSrc;
-      video.setAttribute('aria-label', choice.dataset.demoName);
-      if (projectLink) projectLink.href = choice.dataset.demoHref;
-      if (status) status.textContent = '';
-      video.load();
-      syncPlayback();
-    }));
-    toggle.addEventListener('click', () => {
-      wantsPlayback = video.paused;
-      if (failed && wantsPlayback) {
-        failed = false;
+        if (currentRequest !== request && (!visible || document.hidden)) video.pause();
         if (status) status.textContent = '';
-        video.load();
+      } catch (error) {
+        if (currentRequest !== request || error.name === 'AbortError' || error.name === 'NotAllowedError') return;
+        if (status) status.textContent = 'Video unavailable. Reload the page to retry.';
       }
-      syncPlayback();
-    });
-    video.addEventListener('play', updateButton);
-    video.addEventListener('pause', updateButton);
+    };
     video.addEventListener('error', () => {
       ++request;
       failed = true;
-      wantsPlayback = false;
       video.pause();
-      if (status) status.textContent = 'Video unavailable. Press Play to retry.';
-      updateButton();
+      if (status) status.textContent = 'Video unavailable. Reload the page to retry.';
     });
     document.addEventListener('visibilitychange', syncPlayback);
-    motionPreference.addEventListener('change', event => {
-      if (event.matches) wantsPlayback = false;
-      syncPlayback();
+    document.addEventListener('pointerdown', () => {
+      if (video.paused && !failed) syncPlayback();
+    }, { passive: true });
+    window.addEventListener('online', () => {
+      if (failed) {
+        failed = false;
+        video.load();
+        syncPlayback();
+      }
     });
     if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
+      new IntersectionObserver(entries => {
         visible = entries[0].isIntersecting;
         syncPlayback();
-      }, { threshold: 0.1 });
-      observer.observe(video);
+      }, { threshold: 0.1 }).observe(video);
     } else {
       visible = true;
       syncPlayback();
     }
-    updateButton();
   });
 })();

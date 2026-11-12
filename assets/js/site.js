@@ -69,6 +69,48 @@
     }
   }
 
+  if (!reduced) {
+    document.querySelectorAll('[data-home-parallax]').forEach(section => {
+      let scheduled = false;
+      let pointerX = 0;
+      let pointerY = 0;
+      const update = () => {
+        scheduled = false;
+        if (innerWidth <= 700) {
+          section.style.removeProperty('--parallax-x');
+          section.style.removeProperty('--parallax-y');
+          return;
+        }
+        const bounds = section.getBoundingClientRect();
+        if (bounds.bottom < 0 || bounds.top > innerHeight) return;
+        const offset = (innerHeight / 2 - bounds.top - bounds.height / 2) * .045;
+        section.style.setProperty('--parallax-x', `${pointerX}px`);
+        section.style.setProperty('--parallax-y', `${Math.max(-18, Math.min(18, offset)) + pointerY}px`);
+      };
+      const schedule = () => {
+        if (!scheduled) {
+          scheduled = true;
+          requestAnimationFrame(update);
+        }
+      };
+      addEventListener('scroll', schedule, { passive: true });
+      addEventListener('resize', schedule, { passive: true });
+      if (matchMedia('(pointer:fine)').matches) {
+        section.addEventListener('pointermove', e => {
+          const bounds = section.getBoundingClientRect();
+          pointerX = ((e.clientX - bounds.left) / bounds.width - .5) * -5;
+          pointerY = ((e.clientY - bounds.top) / bounds.height - .5) * -5;
+          schedule();
+        });
+        section.addEventListener('pointerleave', () => {
+          pointerX = pointerY = 0;
+          schedule();
+        });
+      }
+      schedule();
+    });
+  }
+
   // Smooth in-page navigation without hijacking external links.
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
@@ -215,16 +257,4 @@
     sections.forEach(s => observer.observe(s));
   }
 
-  // Barely-there magnetic motion on pill buttons for pointer devices.
-  if (!reduced && matchMedia('(pointer:fine)').matches) {
-    document.querySelectorAll('.button').forEach(btn => {
-      btn.addEventListener('pointermove', e => {
-        const r = btn.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width/2) / r.width;
-        const y = (e.clientY - r.top - r.height/2) / r.height;
-        btn.style.transform = `translate(${x*3}px,${y*2}px) translateY(-1px)`;
-      });
-      btn.addEventListener('pointerleave', () => btn.style.transform = '');
-    });
-  }
 })();
