@@ -7,9 +7,9 @@
   <meta name="theme-color" content="#f7f5f4">
   <title>Jeffrey (Zihan) Lin — Robotics</title>
   <link rel="stylesheet" href="assets/css/site.css">
-  <link rel="stylesheet" href="assets/css/home.css?v=c1139fa75479">
+  <link rel="stylesheet" href="assets/css/home.css?v=e8270795e8f6">
   <link rel="stylesheet" href="assets/css/demo-player.css?v=5427d109d57b">
-  <link rel="preload" as="image" href="assets/img/wd1-hero.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/harvesting/harvest-sequence.webp">
   <script src="assets/js/demo-player.js?v=14bd1ada8ca7" defer></script>
 </head>
 <body class="portfolio-home">
@@ -22,25 +22,13 @@
     </div>
   </nav>
   <main id="main">
-    <section class="portfolio-hero" data-home-parallax>
+    <section class="portfolio-hero wrap">
       <div class="portfolio-intro" data-reveal>
         <h1>Jeffrey<br> (Zihan) Lin</h1>
         <p class="portfolio-role">Robotics &amp; mechatronics</p>
         <p>I work on robot mechanisms, embedded control, and simulation. My projects include a custom desktop arm, blueberry harvesting, and an MRI-compatible needle-positioning system.</p>
         <div class="portfolio-actions"><a class="button dark" href="#work">View projects <span class="arrow" aria-hidden="true">↓</span></a><a class="button" href="mailto:zlin439@gatech.edu">Email me <span class="arrow" aria-hidden="true">↗</span></a></div>
       </div>
-      <a class="portfolio-hero-visual" href="projects/robot-arm.html" aria-label="Explore the W-D1 robotic arm">
-        <img src="assets/img/wd1-hero.webp" alt="Low-angle photograph of the raised W-D1 arm, with its red structure and gripper lit from above" width="1152" height="1536" fetchpriority="high">
-      </a>
-    </section>
-
-    <section class="portfolio-demonstration wrap" aria-labelledby="practice-title">
-        <div class="portfolio-practice" data-reveal>
-          <h2 id="practice-title">Engineering practice</h2>
-          <p>For W-D1, I designed and assembled the joints and belt drives, integrated STM32 control and encoder feedback, and built the matching MuJoCo model.</p>
-          <p>My work in the lab extends that process to harvesting mechanisms and an MRI-compatible needle-positioning platform.</p>
-          <a class="button" href="projects/robot-arm.html">Explore W-D1 <span class="arrow" aria-hidden="true">↗</span></a>
-        </div>
       <section class="demo-showcase" data-demo-player data-reveal aria-label="OpenArm blueberry harvesting demonstration">
         <div class="demo-stage">
           <div class="demo-screen"><video muted autoplay loop playsinline preload="metadata" poster="assets/img/harvesting/harvest-sequence.webp" aria-label="OpenArm blueberry harvesting"><source src="assets/video/harvesting/harvest-sequence.mp4" type="video/mp4"></video></div>
@@ -73,6 +61,7 @@
       <div class="portfolio-about-copy" data-reveal>
         <p>I study Biomedical Engineering at Georgia Tech with a Robotics Minor. My work combines mechanical design, embedded systems, and simulation, with an interest in robotic manipulation and medical robotics.</p>
         <h3>Research</h3><p>At Georgia Tech’s BioMedical Mechatronics Lab, I work on harvesting-robot simulation and mechanical design for an MRI-compatible needle intervention platform.</p>
+        <h3>Development</h3><p>For W-D1, I designed and assembled the joints and belt drives, integrated STM32 control and encoder feedback, and built the matching MuJoCo model. My work in the lab extends that process to harvesting mechanisms and an MRI-compatible needle-positioning platform.</p>
         <h3>Education</h3><ul><li>Georgia Institute of Technology — B.S. Biomedical Engineering, Robotics Minor, 2026–2028</li><li>University of Florida — Biomedical Engineering, 2024–2025</li></ul>
         <h3>Tools</h3><p>Python, C, MATLAB, STM32, SolidWorks, ROS 2, MuJoCo, Newton, and URDF/MJCF.</p>
         <a class="button" href="assets/resume/Jeffrey_Zihan_Lin_Resume.pdf?v=53daffc5daa4" target="_blank" rel="noreferrer">Open résumé ↗</a>
