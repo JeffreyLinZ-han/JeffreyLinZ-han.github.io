@@ -7,9 +7,9 @@
   <meta name="theme-color" content="#f7f5f4">
   <title>Jeffrey (Zihan) Lin — Robotics</title>
   <link rel="stylesheet" href="assets/css/site.css">
-  <link rel="stylesheet" href="assets/css/home.css?v=3fb31ef6b820">
+  <link rel="stylesheet" href="assets/css/home.css?v=c1139fa75479">
   <link rel="stylesheet" href="assets/css/demo-player.css?v=5427d109d57b">
-  <link rel="preload" as="image" href="assets/img/harvesting/harvest-sequence.webp">
+  <link rel="preload" as="image" href="assets/img/wd1-hero.webp" fetchpriority="high">
   <script src="assets/js/demo-player.js?v=14bd1ada8ca7" defer></script>
 </head>
 <body class="portfolio-home">
@@ -22,32 +22,32 @@
     </div>
   </nav>
   <main id="main">
-    <section class="portfolio-hero wrap">
+    <section class="portfolio-hero" data-home-parallax>
       <div class="portfolio-intro" data-reveal>
         <h1>Jeffrey<br> (Zihan) Lin</h1>
         <p class="portfolio-role">Robotics &amp; mechatronics</p>
         <p>I work on robot mechanisms, embedded control, and simulation. My projects include a custom desktop arm, blueberry harvesting, and an MRI-compatible needle-positioning system.</p>
         <div class="portfolio-actions"><a class="button dark" href="#work">View projects <span class="arrow" aria-hidden="true">↓</span></a><a class="button" href="mailto:zlin439@gatech.edu">Email me <span class="arrow" aria-hidden="true">↗</span></a></div>
       </div>
+      <a class="portfolio-hero-visual" href="projects/robot-arm.html" aria-label="Explore the W-D1 robotic arm">
+        <img src="assets/img/wd1-hero.webp" alt="Low-angle photograph of the raised W-D1 arm, with its red structure and gripper lit from above" width="1152" height="1536" fetchpriority="high">
+      </a>
+    </section>
+
+    <section class="portfolio-demonstration wrap" aria-labelledby="practice-title">
+        <div class="portfolio-practice" data-reveal>
+          <h2 id="practice-title">Engineering practice</h2>
+          <p>For W-D1, I designed and assembled the joints and belt drives, integrated STM32 control and encoder feedback, and built the matching MuJoCo model.</p>
+          <p>My work in the lab extends that process to harvesting mechanisms and an MRI-compatible needle-positioning platform.</p>
+          <a class="button" href="projects/robot-arm.html">Explore W-D1 <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
       <section class="demo-showcase" data-demo-player data-reveal aria-label="OpenArm blueberry harvesting demonstration">
         <div class="demo-stage">
           <div class="demo-screen"><video muted autoplay loop playsinline preload="metadata" poster="assets/img/harvesting/harvest-sequence.webp" aria-label="OpenArm blueberry harvesting"><source src="assets/video/harvesting/harvest-sequence.mp4" type="video/mp4"></video></div>
         </div>
         <p data-demo-status role="status"></p>
-        <a class="demo-project-link" data-demo-project-link href="projects/harvesting.html">Project details →</a>
+        <a class="demo-project-link" data-demo-project-link href="projects/harvesting.html">OpenArm harvesting →</a>
       </section>
-    </section>
-
-    <section class="portfolio-build" data-home-parallax aria-labelledby="practice-title">
-      <img class="portfolio-build-image" src="assets/img/wd1-bench.webp" alt="Overhead view of the W-D1 arm, belt drives, controller boards, and laptop on the workbench" loading="lazy" width="1536" height="1152">
-      <div class="wrap portfolio-build-content">
-        <div class="portfolio-build-copy" data-reveal>
-          <h2 id="practice-title">Engineering practice</h2>
-          <p>For W-D1, I designed and assembled the joints and belt drives, integrated STM32 control and encoder feedback, and built the matching MuJoCo model.</p>
-          <p>My work in the lab extends that process to harvesting mechanisms and an MRI-compatible needle-positioning platform.</p>
-          <a class="button light" href="projects/robot-arm.html">Explore W-D1 <span class="arrow" aria-hidden="true">↗</span></a>
-        </div>
-      </div>
     </section>
 
     <section class="portfolio-section wrap" id="work">
